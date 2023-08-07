@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.window-height{
+    height: calc(100vh - 50px);
+}
+
+
+
+
+/*.test {*/
+/*    width: calc( 100% - 8px )!* scrollbar is average 1em/16px width, remove it from thead width *!;*/
+/*}*/
+
+::-webkit-scrollbar {
+    width: 8px;               /* ширина scrollbar */
+}
+::-webkit-scrollbar-track {
+    background: rgb(228 228 231);        /* цвет дорожки */
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgb(156 163 175);    /* цвет плашки */
+    border-radius: 20px;       /* закругления плашки */
+}
+
