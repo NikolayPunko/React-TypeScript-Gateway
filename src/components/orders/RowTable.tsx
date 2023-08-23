@@ -12,7 +12,7 @@ export function RowTable(props: RowTableProps) {
 
     return (
         <>
-            <tr onClick={() => navigate(`/order?id=${props.order.ID}`)} className=" border-b table w-full h-auto table-fixed hover:bg-gray-100" >
+            <tr onClick={() => navigate(`/${props.order.ID}`)} className=" border-b table w-full h-auto table-fixed hover:bg-gray-100" >
                 <td className="px-2" style={{width: '2%'}}>#</td>
                 <td className="px-1 py-2 " style={{width: '2%'}}><input type="checkbox"/></td>
                 <td className="text-xs" style={{width: '8%'}}>{props.order.PSTN}</td>

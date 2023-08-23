@@ -5,13 +5,14 @@ import {OrderTable} from "../components/orders/OrderTable";
 import {Navigation} from "../components/Navigation";
 import axios, {AxiosError} from "axios";
 import {ParseDateToFormatYYYY_MM_dd} from "../utils/ParseDate";
+import {ModalError} from "../components/error/ModalError";
 
 
 
 export function OrdersPage() {
 
     const [orders, setOrders] = useState<any>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
 
 
@@ -58,6 +59,8 @@ export function OrdersPage() {
 
     return (
         <>
+            {error!='' && <h2><ModalError title={error}/></h2>}
+
             <Navigation/>
             <div className="flex flex-row window-height">
                 <div className="w-44 py-2 border-r-2 bg-gray-50 justify-stretch">
@@ -86,7 +89,11 @@ export function OrdersPage() {
 
                     <FilterPanel onFilter={fetchOrders}/>
 
-                    <OrderTable orders={orders} isLoading={isLoading} />
+
+
+                    {!isLoading && error=='' && <OrderTable orders={orders} isLoading={isLoading} />}
+
+
 
 
                 </div>

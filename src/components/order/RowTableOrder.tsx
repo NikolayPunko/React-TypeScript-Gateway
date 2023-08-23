@@ -23,7 +23,7 @@ export function RowTableOrder(props: RowTableOrderProps) {
                 <td className="text-xs" style={{width: '8%'}}>{props.product.amountWithVat}</td>
             </tr>
             <tr className="table w-full h-auto table-fixed border-b-2">
-                <td className="bg-gray-200 text-xs py-1 px-1">
+                <td className="bg-gray-100 text-xs py-1 px-1">
                     Код товара, присвоенный покупателем: <span className="">{props.product.codeByBuyer}</span>
                 </td>
             </tr>
