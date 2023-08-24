@@ -1,10 +1,13 @@
 import React, {useEffect, useRef, useState} from "react";
 
-import "ace-builds";
+
 import AceEditor from "react-ace";
 import "ace-builds/webpack-resolver";
 
+
+
 import "ace-builds/src-noconflict/mode-jsx";
+// import "ace-builds/src-noconflict/worker-coffee";
 
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
@@ -16,13 +19,13 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/theme-tomorrow";
 import "ace-builds/src-noconflict/theme-monokai";
-// import "ace-builds/src-noconflict/theme-wilight";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/theme-terminal";
 
 
 import {CustomStyle} from "../../data/styleForSelect";
 import Select from "react-select";
+import {Modal} from "../modal/Modal";
 
 
 interface ProductsEditorJSONProps {
@@ -35,14 +38,10 @@ export function LanguageEditor(props: ProductsEditorJSONProps) {
 
 
     const [modifiedData, setModifiedData] = useState(props.originalData);
-
-
-    // const [isSyntaxError, setIsSyntaxError] = useState(false);
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     const [errorMsg, setErrorMsg] = useState("");
-
     const aceEditor: any = useRef(null)
-
     const styleError = errorMsg === "No syntax errors." ? "text-green-500 px-2" : "text-red-600 px-2"
 
 
@@ -83,7 +82,15 @@ export function LanguageEditor(props: ProductsEditorJSONProps) {
 
     function submitChanges() {
         // console.log("submitChanges!")
-        props.sendChanges(modifiedData)
+        if(aceEditor.current.editor.getSession().getAnnotations().length === 0){
+            props.sendChanges(modifiedData)
+        } else {
+            setIsOpenModal(true)
+        }
+    }
+
+    function closeModal() {
+        setIsOpenModal(false)
     }
 
 
@@ -206,6 +213,7 @@ export function LanguageEditor(props: ProductsEditorJSONProps) {
                     />
                 </div>
 
+                {isOpenModal && <Modal title={"Ошибка синтаксиса."} message={"Исправьте ошибки синтаксиса и повторите попытку."} onClose={() => closeModal()}/>}
 
             </div>
         </>

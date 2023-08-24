@@ -49,7 +49,7 @@ export function ProductEditorJSON() {
 
     return (
         <>
-            {error!='' && <h2><ModalError title={error}/></h2>}
+            {error!=='' && <h2><ModalError title={error}/></h2>}
 
             <div className="flex flex-col">
                 <div className="bg-gray-100 h-14 flex flex-row items-center justify-center border-b-2 ">
@@ -59,7 +59,7 @@ export function ProductEditorJSON() {
                 {isLoading && <div className="py-5 text-center ">Загрузка...</div>}
 
 
-                {!isLoading && error=='' && <LanguageEditor originalData={originalProducts} sendChanges={(e) => sendChanges(e)} mode="json"/>}
+                {!isLoading && error==='' && <LanguageEditor originalData={originalProducts} sendChanges={(e) => sendChanges(e)} mode="json"/>}
 
 
                 {/*<LanguageEditor originalData={originalProducts} sendChanges={(e) => sendChanges(e)} mode="json"/>*/}
