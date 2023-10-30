@@ -7,9 +7,10 @@ import {RowTableOrder} from "../components/order/RowTableOrder";
 import axios, {AxiosError} from "axios";
 import {IDocumentOrder} from "../models/order";
 import {ModalError} from "../components/error/ModalError";
+import {observer} from "mobx-react-lite";
 
 
-export function Order() {
+function Order() {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -198,3 +199,4 @@ export function Order() {
     )
 }
 
+export default observer(Order)

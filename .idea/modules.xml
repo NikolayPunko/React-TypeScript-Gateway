@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/service-for-providers.iml" filepath="$PROJECT_DIR$/.idea/service-for-providers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/React-TypeScript-Gateway.iml" filepath="$PROJECT_DIR$/.idea/React-TypeScript-Gateway.iml" />
     </modules>
   </component>
 </project>

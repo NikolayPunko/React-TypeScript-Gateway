@@ -6,10 +6,11 @@ import {Navigation} from "../components/Navigation";
 import axios, {AxiosError} from "axios";
 import {ParseDateToFormatYYYY_MM_dd} from "../utils/ParseDate";
 import {ModalError} from "../components/error/ModalError";
+import {observer} from "mobx-react-lite";
 
 
 
-export function OrdersPage() {
+function OrdersPage() {
 
     const [orders, setOrders] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -105,3 +106,5 @@ export function OrdersPage() {
 
     )
 }
+
+export default observer(OrdersPage)
