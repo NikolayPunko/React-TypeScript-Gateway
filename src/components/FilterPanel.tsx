@@ -9,7 +9,11 @@ import {DateRange, RefType} from "./DateRange";
 
 
 interface FilterPanelProps {
-    onFilter: (orderNumMessage:any, orderAgent:any, orderStatus:any, orderProvider:any, orderDate:any) => void
+    fetchOrdersByFilter: (orderNumMessage:any, orderAgent:any, orderStatus:any, orderProvider:any, orderDate:any, page:any) => void
+    fetchOrdersPaginated: (orderNumMessage:any, orderAgent:any, orderStatus:any, orderProvider:any, orderDate:any, page:any) => void
+    fetching: boolean
+    currentPage: any
+    setFetching: (bool: boolean) => void
 }
 
 export function FilterPanel(props: FilterPanelProps) {
@@ -73,16 +77,30 @@ export function FilterPanel(props: FilterPanelProps) {
     }
 
     useEffect(() => {
-
-        props.onFilter(
+        props.fetchOrdersByFilter(
             orderNumMessage,
             orderAgent,
             validationSelectParameters(orderStatus),
             orderProvider,
-            orderDate
+            orderDate,
+            props.currentPage
         )
-
     }, [orderNumMessage, orderAgent, orderStatus, orderProvider, orderDate]);
+
+
+    useEffect(() => {
+        if(props.fetching){
+            props.fetchOrdersPaginated(
+                orderNumMessage,
+                orderAgent,
+                validationSelectParameters(orderStatus),
+                orderProvider,
+                orderDate,
+                props.currentPage
+            )
+        }
+    }, [props.fetching]);
+
 
 
     const styles = {

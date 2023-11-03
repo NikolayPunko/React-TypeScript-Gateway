@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {IOrder} from "../../models/order";
 
@@ -6,9 +6,11 @@ import {IOrder} from "../../models/order";
 interface RowTableProps {
     order: IOrder
 }
-export function RowTable(props: RowTableProps) {
+function RowTable(props: RowTableProps) {
 
     const navigate = useNavigate();
+
+
 
     return (
         <>
@@ -28,3 +30,5 @@ export function RowTable(props: RowTableProps) {
         </>
     )
 }
+
+export default memo(RowTable)

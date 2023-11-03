@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {LeftNavigation} from "../components/leftNavigation/LeftNavigation";
 import {FilterPanel} from "../components/FilterPanel";
-import {OrderTable} from "../components/orders/OrderTable";
 import {Navigation} from "../components/Navigation";
-import axios, {AxiosError} from "axios";
-import {ParseDateToFormatYYYY_MM_dd} from "../utils/ParseDate";
+import {AxiosError} from "axios";
 import {ModalError} from "../components/error/ModalError";
 import {observer} from "mobx-react-lite";
-
+import OrderTable from "../components/orders/OrderTable";
+import OrderService from "../services/OrderService";
 
 
 function OrdersPage() {
@@ -17,50 +16,39 @@ function OrdersPage() {
     const [error, setError] = useState('');
 
 
-    async function fetchOrders(orderNumMessage:any, orderAgent:any, orderStatus:any, orderProvider:any, orderDate:any) {
-        try {
-            // console.log("fetchOrders!");
-            // console.log(orderNumMessage);
-            // console.log(orderAgent);
-            // console.log(orderStatus);
-            // console.log(orderProvider);
-            // console.log(ParseDateToFormatYYYY_MM_dd(orderDate.startDate)); //осталось отправить в теле объекта
-            // console.log(ParseDateToFormatYYYY_MM_dd(orderDate.endDate)); //осталось отправить в теле объекта
+    const [currentPage, setCurrentPage] = useState(1);
+    const [fetching, setFetching] = useState(false);
 
+
+    function isFetching(bool: boolean) {
+        setFetching(bool);
+    }
+
+    async function fetchOrdersByFilter(orderNumMessage: any, orderAgent: any, orderStatus: any, orderProvider: any, orderDate: any, page: any) {
+        try {
             setError('');
             setIsLoading(true);
-            const response = await axios.post('http://restdisp.savushkin.by:5040/filteredList',
-                {
-                    "TP": "ORDERS", //TP - тип документа, для заявок значение "ORDERS",
-                    "EDI": "001",  //EDI - код EDI-оператора, возможно будем указывать имя
-                    "cmd": "filteredList",
-                    "DTBEG": ParseDateToFormatYYYY_MM_dd(orderDate.startDate),  //DTBEG-DTEND, даты начала и конца периода выборки,
-                    "DTEND": ParseDateToFormatYYYY_MM_dd(orderDate.endDate),
-                    "row_count": 50,  //row_count - сколько записей выводить за раз,
-                    "ID": 0,  //ID -начиная с какого ID выводить записи,
-                    "sender": orderAgent,  //sender - необязательный параметр, для фильтрации по поставщику
-                    "PSTN": orderStatus  //PSTN - необязательный параметр, для фильтрации по состоянию документа.
-                });
-
+            const response = await OrderService.getOrders(orderNumMessage, orderAgent, orderStatus, orderProvider, orderDate, page)
             setOrders(response.data.rows);
             setIsLoading(false);
-
-            // console.log(response.data.rows)
-            // console.log(orders)
-
         } catch (e: unknown) {
-            console.log("Ошибка!")
+            // console.log("Ошибка!")
             const error = e as AxiosError;
             setIsLoading(false);
             setError(error.message)
         }
     }
 
+    async function fetchOrdersPaginated(orderNumMessage: any, orderAgent: any, orderStatus: any, orderProvider: any, orderDate: any, page: any) {
+        await fetchOrdersByFilter(orderNumMessage, orderAgent, orderStatus, orderProvider, orderDate, page+1)
+        setCurrentPage(prevState => prevState + 1)
+        setFetching(false)
+    }
 
 
     return (
         <>
-            {error!='' && <h2><ModalError title={error}/></h2>}
+            {error != '' && <h2><ModalError title={error}/></h2>}
 
             <Navigation/>
             <div className="flex flex-row window-height">
@@ -72,10 +60,12 @@ function OrdersPage() {
                         <div className="inline-flex w-1/2">
                             <span className="font-bold px-5 text-xl">Заказы</span>
                             <div className="flex h-7 flex-row border rounded shadow-sm">
-                                <button className="px-2 rounded-l bg-blue-700 text-white text-sm font-medium">Все</button>
+                                <button className="px-2 rounded-l bg-blue-700 text-white text-sm font-medium">Все
+                                </button>
                                 <button className="px-2 text-sm font-medium hover:bg-gray-100">Ждет обработки</button>
                                 <button className="px-2 text-sm font-medium hover:bg-gray-100">У контрагента</button>
-                                <button className="px-2 rounded-r text-sm font-medium hover:bg-gray-100">Завершенные
+                                <button className="px-2 rounded-r text-sm font-medium hover:bg-gray-100"
+                                        onClick={() => setFetching(true)}>Завершенные
                                 </button>
                             </div>
                         </div>
@@ -88,20 +78,17 @@ function OrdersPage() {
                         </div>
                     </div>
 
-                    <FilterPanel onFilter={fetchOrders}/>
+                    <FilterPanel fetchOrdersByFilter={fetchOrdersByFilter} fetchOrdersPaginated={fetchOrdersPaginated}
+                                 fetching={fetching} currentPage={currentPage} setFetching={isFetching}/>
 
 
-
-                    {!isLoading && error=='' && <OrderTable orders={orders} isLoading={isLoading} />}
-
-
+                    {error == '' && <OrderTable orders={orders} isLoading={isLoading} setFetching={isFetching}/>}
 
 
                 </div>
 
             </div>
         </>
-
 
 
     )

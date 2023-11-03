@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react'
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {orderFields} from "../data/orderData";
 
-import {RowTable} from "../components/orders/RowTable";
 import {RowTableOrder} from "../components/order/RowTableOrder";
 import axios, {AxiosError} from "axios";
 import {IDocumentOrder} from "../models/order";
 import {ModalError} from "../components/error/ModalError";
 import {observer} from "mobx-react-lite";
+import OrderService from "../services/OrderService";
 
 
 function Order() {
@@ -24,16 +24,11 @@ function Order() {
 
     async function fetchOrder() {
         try {
-
-            const TP = "ORDERS"
-            // const ID = "7"
             const ID = params.id
 
             setError('');
             setIsLoading(true);
-            const response = await axios.get<any>(`http://restdisp.savushkin.by:5040/document/${TP}/${ID}/`);
-
-            // console.log(response.data)
+            const response = await OrderService.getOrderById(ID);
             setOrder(response.data);
             setIsLoading(false);
         } catch (e: unknown) {
