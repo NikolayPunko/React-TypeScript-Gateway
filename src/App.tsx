@@ -7,6 +7,8 @@ import Authorization from "./pages/Authorization";
 import OrdersPage from "./pages/OrdersPage";
 import Order from "./pages/Order";
 import PrivateRoute from "./components/PrivateRoute";
+import PriceLists from "./pages/PriceListsPage";
+import PriceListPage from "./pages/PriceListPage";
 
 
 function App() {
@@ -33,6 +35,9 @@ function App() {
                         <Route path="/" element={<OrdersPage/>}/>
                         <Route path="/:id" element={<Order/>} />
                         <Route path="/:id/edit" element={<ProductEditorJSON/>} />
+
+                        <Route path="/price" element={<PriceLists/>} />
+                        <Route path="/price/:id" element={<PriceListPage/>} />
                     </Route>
 
 

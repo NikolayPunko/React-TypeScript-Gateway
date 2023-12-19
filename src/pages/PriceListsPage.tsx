@@ -5,12 +5,12 @@ import {Navigation} from "../components/Navigation";
 import {AxiosError} from "axios";
 import {ModalError} from "../components/error/ModalError";
 import {observer} from "mobx-react-lite";
-import OrderTable from "../components/orders/OrderTable";
 import OrderService from "../services/OrderService";
 import {useNavigate} from "react-router-dom";
+import PriceListTable from "../components/priceLists/PriceListTable";
 
 
-function OrdersPage() {
+function PriceListsPage() {
 
     const navigate = useNavigate();
 
@@ -61,30 +61,18 @@ function OrdersPage() {
                 <div className="flex flex-col w-full">
                     <div className="flex flex-row items-center w-full py-3 border-b-2 bg-gray-50">
                         <div className="inline-flex w-1/2">
-                            <span className="font-bold px-5 text-xl">Заказы</span>
-                            <div className="flex h-7 flex-row border rounded shadow-sm">
-                                <button className="px-2 rounded-l bg-blue-700 text-white text-sm font-medium">Все
-                                </button>
-                                <button className="px-2 text-sm font-medium hover:bg-gray-100">Ждет обработки</button>
-                                <button className="px-2 text-sm font-medium hover:bg-gray-100">У контрагента</button>
-                                <button className="px-2 rounded-r text-sm font-medium hover:bg-gray-100">Завершенные</button>
-                            </div>
+                            <span className="font-bold px-5 text-xl">Прайс-листы</span>
+
                         </div>
 
-                        <div className="inline-flex w-1/2 justify-end">
-                            <button
-                                className="px-2 mx-5 h-7 rounded shadow-sm bg-green-500 text-sm text-white font-medium hover:bg-green-600 "
-                                onClick={() => navigate("/price")}>+
-                                Создать
-                            </button>
-                        </div>
+
                     </div>
 
                     <FilterPanel fetchOrdersByFilter={fetchOrdersByFilter} fetchOrdersPaginated={fetchOrdersPaginated}
                                  fetching={fetching} currentPage={currentPage} setFetching={isFetching}/>
 
 
-                    {error == '' && <OrderTable orders={orders} isLoading={isLoading} setFetching={isFetching}/>}
+                    {error == '' && <PriceListTable orders={orders} isLoading={isLoading} setFetching={isFetching}/>}
 
 
                 </div>
@@ -96,4 +84,4 @@ function OrdersPage() {
     )
 }
 
-export default observer(OrdersPage)
+export default observer(PriceListsPage)
