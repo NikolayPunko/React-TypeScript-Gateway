@@ -8,6 +8,8 @@ import {useNavigate} from "react-router-dom";
 import PriceListTable from "../components/priceLists/PriceListTable";
 import PricatService from "../services/PricatService";
 import {FilterPanelPricat} from "../components/Pricat/FilterPanelPricat";
+import {ModalFormUploadFile} from "../components/priceLists/ModalFormUploadFile";
+import {Modal} from "../components/modal/Modal";
 
 
 function PriceListsPage() {
@@ -23,8 +25,27 @@ function PriceListsPage() {
     const [fetching, setFetching] = useState(false);
 
 
+    const [isModalImport, setIsModalImport] = useState(false);
+
+    const [isModalNotif, setIsModalNotif] = useState(false);
+    const [modalMsg, setModalMsg] = useState('');
+
     function isFetching(bool: boolean) {
-        setFetching(bool);
+        // setFetching(bool); //поправить пагинацию
+    }
+
+    async function importFile(file: any){
+        try {
+            setIsLoading(true);
+            const response = await PricatService.importPricat(file); //response id
+            setModalMsg("Файл успешно импортирован!");
+        } catch (e: unknown) {
+            setModalMsg("Ошибка импорта! Проверьте импортируемый файл и попробуйте еще раз.")
+        } finally {
+            setIsLoading(false);
+            showModalImport();
+            showModalNotif();
+        }
     }
 
     function resetPricats(){
@@ -36,16 +57,12 @@ function PriceListsPage() {
             setError('');
             setIsLoading(true);
             const response = await PricatService.getPricats(pricatNDE, pricatStatus, pricatDate, page)
-            console.log(page)
-            // if(page==1){
-                setPricats(response.data);
-            // } else {
-            //     setPricats([...pricats, ...response.data]);
-            // }
+            // console.log(page)
+            setPricats(response.data);
+            // setPricats([...pricats, ...response.data]);
 
             setIsLoading(false);
         } catch (e: unknown) {
-            // console.log("Ошибка!")
             const error = e as AxiosError;
             setIsLoading(false);
             setError(error.message)
@@ -58,6 +75,13 @@ function PriceListsPage() {
         setFetching(false)
     }
 
+    function showModalImport(){
+        setIsModalImport(!isModalImport)
+    }
+
+    function showModalNotif(){
+        setIsModalNotif(!isModalNotif)
+    }
 
     return (
         <>
@@ -73,7 +97,21 @@ function PriceListsPage() {
                         <div className="inline-flex w-1/2">
                             <span className="font-bold px-5 text-xl">Прайс-листы</span>
                         </div>
+                        <div className="inline-flex w-1/2 justify-end">
 
+                            <button
+                                className="px-2 mx-5 h-7 w-20 rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200 inline-flex items-center"
+                                onClick={() => showModalImport()}>
+                                <svg className="h-4 w-4 text-black" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke="currentColor" fill="none" >
+                                    <path stroke="none" d="M0 0h24v24H0z"/>
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="18" y1="13" x2="12" y2="19"/>
+                                    <line x1="6" y1="13" x2="12" y2="19"/>
+                                </svg>
+                                <span>Импорт</span>
+                            </button>
+                        </div>
                     </div>
 
                     <FilterPanelPricat fetchPricatsByFilter={fetchPricatsByFilter} fetchPricatsPaginated={fetchOrdersPaginated}
@@ -86,6 +124,10 @@ function PriceListsPage() {
                 </div>
 
             </div>
+
+            {isModalImport && <ModalFormUploadFile importFile={importFile} onClose={showModalImport}></ModalFormUploadFile>}
+
+            {isModalNotif && <Modal title={"Результат операции"} message={modalMsg} onClose={showModalNotif}/>}
         </>
 
 

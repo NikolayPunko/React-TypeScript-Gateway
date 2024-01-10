@@ -73,9 +73,8 @@ function OrdersPage() {
 
                         <div className="inline-flex w-1/2 justify-end">
                             <button
-                                className="px-2 mx-5 h-7 rounded shadow-sm bg-green-500 text-sm text-white font-medium hover:bg-green-600 "
-                                onClick={() => navigate("/price")}>+
-                                Создать
+                                className="px-2 mx-5 h-7 rounded shadow-sm bg-green-500 text-sm text-white font-medium hover:bg-green-600 ">
+                                + Создать
                             </button>
                         </div>
                     </div>
