@@ -4,7 +4,7 @@ import {observer} from "mobx-react-lite";
 
 
 interface PriceListTableProps {
-    orders: any
+    pricats: any
     isLoading: boolean
     setFetching: (bool: boolean) => void
 }
@@ -26,16 +26,17 @@ interface PriceListTableProps {
                 <thead>
                 <tr className="border-b table w-full table-fixed" style={{width: 'calc(100% - 8px)'}}>
                     <th className="px-2 text-left" style={{width: '2%'}}>#</th>
-                    {/*<th className="px-1 text-left" style={{width: '2%'}}><input type="checkbox"/></th>*/}
-                    <th className={style_th + "py-3"} style={{width: '10%'}}>Поле №1</th>
-                    <th className={style_th} style={{width: '6%'}}>Поле №2</th>
-                    <th className={style_th} style={{width: '10%'}}>Поле №3</th>
-                    <th className={style_th} style={{width: '7%'}}>Поле №4</th>
-                    <th className={style_th} style={{width: '8%'}}>Поле №5</th>
-                    <th className={style_th} style={{width: '8%'}}>Поле №6</th>
-                    <th className={style_th} style={{width: '24%'}}>Поле №7</th>
-                    <th className={style_th} style={{width: '10%'}}>Поле №8</th>
-                    <th className={style_th} style={{width: '7%'}}>Поле №9</th>
+                    <th className="px-1 text-left" style={{width: '2%'}}><input type="checkbox"/></th>
+                    <th className={style_th} style={{width: '10%'}}>Статус сообщения</th>
+                    <th className={style_th + "py-3"} style={{width: '10%'}}>Дата и время</th>
+                    <th className={style_th} style={{width: '10%'}}>Номер сообщения</th>
+                    <th className={style_th} style={{width: '10%'}}>Дата сообщения</th>
+                    <th className={style_th} style={{width: '10%'}}>Покупатель</th>
+                    <th className={style_th} style={{width: '10%'}}>Поставщик</th>
+                    <th className={style_th} style={{width: '6%'}}>Провайдер</th>
+                    <th className={style_th} style={{width: '10%'}}>Тип документа</th>
+                    <th className={style_th} style={{width: '10%'}}>Дата создание</th>
+                    <th className={style_th} style={{width: '10%'}}>Дата обновления</th>
                 </tr>
                 </thead>
 
@@ -43,7 +44,7 @@ interface PriceListTableProps {
 
                 {/*{props.isLoading && <tr><td className="py-5 text-center w-screen">Загрузка...</td></tr>}*/}
 
-                {props.orders.map((order, index) => <PriceListTableRow order={order} key={index}/>)}
+                {props.pricats.map((pricat, index) => <PriceListTableRow pricat={pricat} key={index}/>)}
 
                 </tbody>
             </table>

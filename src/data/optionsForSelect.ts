@@ -17,3 +17,9 @@ export const optionsProvider = [
     {value: '005', label: 'Провайдер №5'},
 ]
 
+export const optionsPricatStatus = [
+    {value: 'DRAFT', label: 'Черновик'},
+    {value: 'IMPORTED', label: 'Импортировано'},
+    {value: 'TRANSFERRED', label: 'Передано'},
+]
+

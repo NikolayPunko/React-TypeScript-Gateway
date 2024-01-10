@@ -1,8 +1,41 @@
 
 export function ParseDateToFormatYYYY_MM_dd(date: Date){
-
     return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
+}
 
+export function ParseDateToFormatYYYY_MM_dd_HH_mm_ss(date: Date){
+    return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
+        +" "+ date.getHours().toString().padStart(2, '0') +":"+ date.getMinutes().toString().padStart(2, '0') +":"+ date.getSeconds().toString().padStart(2, '0')
+}
+
+export function ParseStringDateToFormatYYYY_MM_dd_HH_mm_ss(str: string){
+    return ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(str))
+}
+
+export function ParseDateToFormatYYYYMMddTHHmmsstttZ(date: Date){
+    return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
+        +"T"+ date.getHours().toString().padStart(2, '0') +":"+ date.getMinutes().toString().padStart(2, '0') +":"+ date.getSeconds().toString().padStart(2, '0')
+        +"."+ date.getMilliseconds().toString().padStart(3, '0') +"Z"
+
+}
+export function ParseStringDateToFormatYYYYMMddTHHmmsstttZ(str: string){
+    return ParseDateToFormatYYYYMMddTHHmmsstttZ(new Date(str))
+}
+
+export function setEndOfDay(date: Date){
+    date.setHours(23)
+    date.setMinutes(59)
+    date.setSeconds(59)
+    date.setMilliseconds(999)
+    return date;
+}
+
+export function setStartOfDay(date: Date){
+    date.setHours(0)
+    date.setMinutes(0)
+    date.setSeconds(0)
+    date.setMilliseconds(0)
+    return date;
 }
 
 // interface Date {

@@ -1,11 +1,12 @@
-import React, {memo, useEffect} from "react";
+import React from "react";
 import {useNavigate} from "react-router-dom";
-import {IOrder} from "../../models/order";
 import {observer} from "mobx-react-lite";
+import {PricatsResponse} from "../../models/response/PricatsResponse";
+import {ParseDateToFormatYYYY_MM_dd_HH_mm_ss} from "../../utils/ParseDate";
 
 
 interface RowTableProps {
-    order: IOrder
+    pricat: PricatsResponse
 }
 function PriceListTableRow(props: RowTableProps) {
 
@@ -13,18 +14,19 @@ function PriceListTableRow(props: RowTableProps) {
 
     return (
         <>
-            <tr onClick={() => navigate(`/price/${props.order.ID}`)} className=" border-b table w-full h-auto table-fixed hover:bg-gray-100" >
+            <tr  className=" border-b table w-full h-auto table-fixed hover:bg-gray-100" >
                 <td className="px-2" style={{width: '2%'}}>#</td>
-                {/*<td className="px-1 py-2 " style={{width: '2%'}}><input type="checkbox"/></td>*/}
-                <td className="text-xs" style={{width: '10%'}}>{props.order.PSTN}</td>
-                <td className="text-xs" style={{width: '6%'}}>{props.order.DT}</td>
-                <td className="text-xs" style={{width: '10%'}}>{props.order.NDE}</td>
-                <td className="text-xs" style={{width: '7%'}}>{props.order.DTDOC}</td>
-                <td className="text-xs" style={{width: '8%'}}>{props.order.receiver}</td>
-                <td className="text-xs" style={{width: '8%'}}>{props.order.sender}</td>
-                <td className="text-xs" style={{width: '24%'}}>{props.order.ADDR}</td>
-                <td className="text-xs" style={{width: '10%'}}>{props.order.DTDLR}</td>
-                <td className="text-xs" style={{width: '7%'}}>Нет</td>
+                <td className="px-1 py-2 " style={{width: '2%'}}><input type="checkbox"/></td>
+                <td className="text-xs" style={{width: '10%'}}>{props.pricat.documentStatus}</td>
+                <td className="text-xs" style={{width: '10%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTime))}</td>
+                <td className="text-xs" style={{width: '10%'}}>{props.pricat.documentNumber}</td>
+                <td className="text-xs" style={{width: '10%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.documentDate))}</td>
+                <td className="text-xs" style={{width: '10%'}}>{props.pricat.receiverId}</td>
+                <td className="text-xs" style={{width: '10%'}}>{props.pricat.senderId}</td>
+                <td className="text-xs" style={{width: '6%'}}>{props.pricat.edi}</td>
+                <td className="text-xs" style={{width: '10%'}}>{props.pricat.documentType}</td>
+                <td className="text-xs" style={{width: '10%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeInsert))}</td>
+                <td className="text-xs" style={{width: '10%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeUpdate))}</td>
             </tr>
         </>
     )
