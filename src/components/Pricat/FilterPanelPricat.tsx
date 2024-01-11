@@ -11,7 +11,7 @@ interface FilterPanelPricatProps {
     fetching: boolean
     currentPage: any
     setFetching: (bool: boolean) => void
-    resetPricats: () => void
+    updateFlag: boolean
 }
 
 export function FilterPanelPricat(props: FilterPanelPricatProps) {
@@ -38,14 +38,13 @@ export function FilterPanelPricat(props: FilterPanelPricatProps) {
 
 
     useEffect(() => {
-        // props.resetPricats()
         props.fetchPricatsByFilter(
             pricatNDE,
             pricatStatus,
             pricatDate,
             props.currentPage
         )
-    }, [pricatNDE, pricatStatus, pricatDate]);
+    }, [pricatNDE, pricatStatus, pricatDate, props.updateFlag]);
 
 
     useEffect(() => {

@@ -126,7 +126,7 @@ function PriceListPage() {
                     </div>
                     <div className="h-16 border-t-2 flex flex-row items-center px-10">
                         <button className="px-3 mr-3 h-7 rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200 "
-                                onClick={() => navigate("/price")}>Закрыть</button>
+                                onClick={() => navigate("/pricat")}>Закрыть</button>
                     </div></> }
 
 

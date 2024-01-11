@@ -36,8 +36,8 @@ function App() {
                         <Route path="/:id" element={<Order/>} />
                         <Route path="/:id/edit" element={<ProductEditorJSON/>} />
 
-                        <Route path="/price" element={<PriceLists/>} />
-                        <Route path="/price/:id" element={<PriceListPage/>} />
+                        <Route path="/pricat" element={<PriceLists/>} />
+                        <Route path="/pricat/:id" element={<PriceListPage/>} />
                     </Route>
 
 

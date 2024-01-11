@@ -12,7 +12,7 @@ function Authorization() {
 
     const navigate = useNavigate();
     const location = useLocation()
-    const from = location.state?.from?.pathname || '/'
+    const from = location.state?.from?.pathname || '/pricat'
 
     const [defaultInput, setDefaultInput] = useState(true);
     const [hidePassword, setHidePassword] = useState(true);

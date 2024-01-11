@@ -10,6 +10,7 @@ import PricatService from "../services/PricatService";
 import {FilterPanelPricat} from "../components/Pricat/FilterPanelPricat";
 import {ModalFormUploadFile} from "../components/priceLists/ModalFormUploadFile";
 import {Modal} from "../components/modal/Modal";
+import {PricatsResponse} from "../models/response/PricatsResponse";
 
 
 function PriceListsPage() {
@@ -30,15 +31,19 @@ function PriceListsPage() {
     const [isModalNotif, setIsModalNotif] = useState(false);
     const [modalMsg, setModalMsg] = useState('');
 
+    const [updateFlag, setUpdateFlag] = useState<boolean>(false);
+
     function isFetching(bool: boolean) {
         // setFetching(bool); //поправить пагинацию
     }
+
 
     async function importFile(file: any){
         try {
             setIsLoading(true);
             const response = await PricatService.importPricat(file); //response id
             setModalMsg("Файл успешно импортирован!");
+            setUpdateFlag(!updateFlag);
         } catch (e: unknown) {
             setModalMsg("Ошибка импорта! Проверьте импортируемый файл и попробуйте еще раз.")
         } finally {
@@ -48,16 +53,27 @@ function PriceListsPage() {
         }
     }
 
-    function resetPricats(){
-        setPricats([]);
+    async function sendPricat(pricat: PricatsResponse){ //переделать отправку
+        try {
+            setIsLoading(true);
+            const response = await PricatService.sendPricat(pricat.documentId);
+            setModalMsg("Документ успешно отправлен!");
+            setUpdateFlag(!updateFlag);
+        } catch (e: unknown) {
+            setModalMsg("Ошибка отправки! Попробуйте еще раз.")
+        } finally {
+            setIsLoading(false);
+            showModalNotif();
+        }
+
     }
+
 
     async function fetchPricatsByFilter(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
         try {
             setError('');
             setIsLoading(true);
             const response = await PricatService.getPricats(pricatNDE, pricatStatus, pricatDate, page)
-            // console.log(page)
             setPricats(response.data);
             // setPricats([...pricats, ...response.data]);
 
@@ -115,10 +131,11 @@ function PriceListsPage() {
                     </div>
 
                     <FilterPanelPricat fetchPricatsByFilter={fetchPricatsByFilter} fetchPricatsPaginated={fetchOrdersPaginated}
-                                 fetching={fetching} currentPage={currentPage} setFetching={isFetching} resetPricats={resetPricats}/>
+                                 fetching={fetching} currentPage={currentPage} setFetching={isFetching}
+                                       updateFlag={updateFlag}/>
 
 
-                    {error == '' && <PriceListTable pricats={pricats} isLoading={isLoading} setFetching={isFetching}/>}
+                    {error == '' && <PriceListTable pricats={pricats} isLoading={isLoading} setFetching={isFetching} sendPricat={sendPricat}/>}
 
 
                 </div>

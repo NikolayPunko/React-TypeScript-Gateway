@@ -1,12 +1,14 @@
 import React, {memo, useEffect, useState} from 'react'
 import PriceListTableRow from "./PriceListTableRow";
 import {observer} from "mobx-react-lite";
+import {PricatsResponse} from "../../models/response/PricatsResponse";
 
 
 interface PriceListTableProps {
     pricats: any
     isLoading: boolean
     setFetching: (bool: boolean) => void
+    sendPricat: (pricat: PricatsResponse) => void
 }
  function PriceListTable(props: PriceListTableProps) {
 
@@ -28,15 +30,16 @@ interface PriceListTableProps {
                     <th className="px-2 text-left" style={{width: '2%'}}>#</th>
                     <th className="px-1 text-left" style={{width: '2%'}}><input type="checkbox"/></th>
                     <th className={style_th} style={{width: '10%'}}>Статус сообщения</th>
-                    <th className={style_th + "py-3"} style={{width: '10%'}}>Дата и время</th>
+                    <th className={style_th + "py-3"} style={{width: '9%'}}>Дата и время</th>
                     <th className={style_th} style={{width: '10%'}}>Номер сообщения</th>
-                    <th className={style_th} style={{width: '10%'}}>Дата сообщения</th>
+                    <th className={style_th} style={{width: '9%'}}>Дата сообщения</th>
                     <th className={style_th} style={{width: '10%'}}>Покупатель</th>
                     <th className={style_th} style={{width: '10%'}}>Поставщик</th>
-                    <th className={style_th} style={{width: '6%'}}>Провайдер</th>
+                    <th className={style_th} style={{width: '7%'}}>Провайдер</th>
                     <th className={style_th} style={{width: '10%'}}>Тип документа</th>
-                    <th className={style_th} style={{width: '10%'}}>Дата создание</th>
-                    <th className={style_th} style={{width: '10%'}}>Дата обновления</th>
+                    <th className={style_th} style={{width: '9%'}}>Дата создание</th>
+                    <th className={style_th} style={{width: '9%'}}>Дата обновления</th>
+                    <th className={style_th} style={{width: '3%'}}></th>
                 </tr>
                 </thead>
 
@@ -44,7 +47,7 @@ interface PriceListTableProps {
 
                 {/*{props.isLoading && <tr><td className="py-5 text-center w-screen">Загрузка...</td></tr>}*/}
 
-                {props.pricats.map((pricat, index) => <PriceListTableRow pricat={pricat} key={index}/>)}
+                {props.pricats.map((pricat, index) => <PriceListTableRow pricat={pricat} key={index} sendPricat={props.sendPricat}/>)}
 
                 </tbody>
             </table>
