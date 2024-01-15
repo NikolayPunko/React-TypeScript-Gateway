@@ -8,10 +8,10 @@ import {IDocumentOrder} from "../models/order";
 import {ModalError} from "../components/error/ModalError";
 import {observer} from "mobx-react-lite";
 import OrderService from "../services/OrderService";
-import {RowTablePriceList} from "../components/priceList/RowTablePriceList";
+import {RowTablePricat} from "../components/pricat/RowTablePricat";
 
 
-function PriceListPage() {
+function PricatPage() {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -118,7 +118,7 @@ function PriceListPage() {
 
                             <tbody className="block overflow-y-scroll bg-white" style={{maxHeight: 'calc( 100vh - 212px )'}}>
 
-                            {order.msgOrdersItems?.map(product => <RowTablePriceList product={product} key={product.position}/>)}
+                            {order.msgOrdersItems?.map(product => <RowTablePricat product={product} key={product.position}/>)}
 
                             </tbody>
                         </table>
@@ -137,4 +137,4 @@ function PriceListPage() {
     )
 }
 
-export default observer(PriceListPage)
+export default observer(PricatPage)

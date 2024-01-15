@@ -25,7 +25,7 @@ export default class Store {
         try {
             const response = await AuthService.login(username,password);
             // console.log(response)
-            localStorage.setItem('token', response.data.uuid);
+            sessionStorage.setItem('token', response.data.uuid);
             await this.checkAuth()
         } catch (e:any){
             console.log(e.response?.data?.message)
@@ -37,7 +37,7 @@ export default class Store {
     async logout(){
         try {
             // const response = await AuthService.logout(); //не реализовано на сервере
-            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
             this.setAuth(false);
             this.setUser({} as IUser);
         } catch (e:any){

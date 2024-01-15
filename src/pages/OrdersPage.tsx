@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {LeftNavigation} from "../components/leftNavigation/LeftNavigation";
-import {FilterPanel} from "../components/FilterPanel";
+import {FilterPanel} from "../components/orders/FilterPanel";
 import {Navigation} from "../components/Navigation";
 import {AxiosError} from "axios";
 import {ModalError} from "../components/error/ModalError";

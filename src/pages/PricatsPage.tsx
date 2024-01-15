@@ -5,15 +5,16 @@ import {AxiosError} from "axios";
 import {ModalError} from "../components/error/ModalError";
 import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router-dom";
-import PriceListTable from "../components/priceLists/PriceListTable";
+import PriceListTable from "../components/pricats/PriceListTable";
 import PricatService from "../services/PricatService";
-import {FilterPanelPricat} from "../components/Pricat/FilterPanelPricat";
-import {ModalFormUploadFile} from "../components/priceLists/ModalFormUploadFile";
-import {Modal} from "../components/modal/Modal";
+import {FilterPanelPricat} from "../components/pricat/FilterPanelPricat";
+import {ModalFormUploadFile} from "../components/pricats/ModalFormUploadFile";
+import {ModalNotify} from "../components/modal/ModalNotify";
 import {PricatsResponse} from "../models/response/PricatsResponse";
+import {ModalSelect} from "../components/modal/ModalSelect";
 
 
-function PriceListsPage() {
+function PricatsPage() {
 
     const navigate = useNavigate();
 
@@ -28,11 +29,13 @@ function PriceListsPage() {
 
     const [isModalImport, setIsModalImport] = useState(false);
 
-    const [isModalNotif, setIsModalNotif] = useState(false);
+    const [isModalNotify, setIsModalNotif] = useState(false);
+    const [isModalSelect, setIsModalSelect] = useState(false);
     const [modalMsg, setModalMsg] = useState('');
 
     const [updateFlag, setUpdateFlag] = useState<boolean>(false);
 
+    const [pricatForSend, setPricatForSend] = useState<any>(null);
     function isFetching(bool: boolean) {
         // setFetching(bool); //поправить пагинацию
     }
@@ -68,6 +71,18 @@ function PriceListsPage() {
 
     }
 
+    function pressButSend(pricat: PricatsResponse){
+        setPricatForSend(pricat);
+        setModalMsg("Вы уверены что хотите отправить документ?");
+        showModalSelect();
+    }
+
+    async function agreeToSend(){
+        showModalSelect();
+        await sendPricat(pricatForSend);
+        setPricatForSend(null);
+    }
+
 
     async function fetchPricatsByFilter(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
         try {
@@ -96,7 +111,11 @@ function PriceListsPage() {
     }
 
     function showModalNotif(){
-        setIsModalNotif(!isModalNotif)
+        setIsModalNotif(!isModalNotify)
+    }
+
+    function showModalSelect(){
+        setIsModalSelect(!isModalSelect)
     }
 
     return (
@@ -135,7 +154,7 @@ function PriceListsPage() {
                                        updateFlag={updateFlag}/>
 
 
-                    {error == '' && <PriceListTable pricats={pricats} isLoading={isLoading} setFetching={isFetching} sendPricat={sendPricat}/>}
+                    {error == '' && <PriceListTable pricats={pricats} isLoading={isLoading} setFetching={isFetching} sendPricat={pressButSend}/>}
 
 
                 </div>
@@ -144,11 +163,13 @@ function PriceListsPage() {
 
             {isModalImport && <ModalFormUploadFile importFile={importFile} onClose={showModalImport}></ModalFormUploadFile>}
 
-            {isModalNotif && <Modal title={"Результат операции"} message={modalMsg} onClose={showModalNotif}/>}
+            {isModalNotify && <ModalNotify title={"Результат операции"} message={modalMsg} onClose={showModalNotif}/>}
+
+            {isModalSelect && <ModalSelect title={"Отправка документа"} message={modalMsg} onClose={showModalSelect} onAgreement={agreeToSend}/>}
         </>
 
 
     )
 }
 
-export default observer(PriceListsPage)
+export default observer(PricatsPage)

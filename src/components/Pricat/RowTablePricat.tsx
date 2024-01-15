@@ -5,7 +5,7 @@ import {IProductOrder} from "../../models/order";
 interface RowTablePriceListProps {
     product: IProductOrder
 }
-export function RowTablePriceList(props: RowTablePriceListProps) {
+export function RowTablePricat(props: RowTablePriceListProps) {
 
     return (
         <>

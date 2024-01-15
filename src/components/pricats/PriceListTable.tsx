@@ -37,7 +37,7 @@ interface PriceListTableProps {
                     <th className={style_th} style={{width: '10%'}}>Поставщик</th>
                     <th className={style_th} style={{width: '7%'}}>Провайдер</th>
                     <th className={style_th} style={{width: '10%'}}>Тип документа</th>
-                    <th className={style_th} style={{width: '9%'}}>Дата создание</th>
+                    <th className={style_th} style={{width: '9%'}}>Дата создания</th>
                     <th className={style_th} style={{width: '9%'}}>Дата обновления</th>
                     <th className={style_th} style={{width: '3%'}}></th>
                 </tr>
