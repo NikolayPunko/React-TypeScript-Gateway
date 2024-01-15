@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 interface StringLeftNavigationProps {
     title: string
     navigationPath: string
+    disabled: boolean
 }
 export function StringLeftNavigation(props: StringLeftNavigationProps){
 

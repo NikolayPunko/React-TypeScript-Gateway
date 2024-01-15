@@ -3,16 +3,15 @@ import {StringLeftNavigation} from "./StringLeftNavigation";
 
 export function LeftNavigation() {
 
-
-
     return (
-        <div className="flex flex-col w-full  ">
-            <StringLeftNavigation title="Прайс-листы" navigationPath={"/pricat"}/>
-            <StringLeftNavigation title="Заказы" navigationPath={"/"}/>
-            <StringLeftNavigation title="Уведомления об отгрузке" navigationPath={"/"}/>
-            <StringLeftNavigation title="Электронные накладные" navigationPath={"/"}/>
-            <StringLeftNavigation title="Электронные акты" navigationPath={"/"}/>
-            <StringLeftNavigation title="Электронные документы" navigationPath={"/"}/>
+        <div className="flex flex-col w-full">
+            <StringLeftNavigation disabled={false} title="Прайс-листы" navigationPath={"/pricats"}/>
+
+            {/*<StringLeftNavigation disabled={false} title="Заказы" navigationPath={"/"}/>*/}
+            {/*<StringLeftNavigation disabled={true} title="Уведомления об отгрузке" navigationPath={"/"}/>*/}
+            {/*<StringLeftNavigation disabled={true} title="Электронные накладные" navigationPath={"/"}/>*/}
+            {/*<StringLeftNavigation disabled={true} title="Электронные акты" navigationPath={"/"}/>*/}
+            {/*<StringLeftNavigation disabled={true} title="Электронные документы" navigationPath={"/"}/>*/}
         </div>
     )
 }

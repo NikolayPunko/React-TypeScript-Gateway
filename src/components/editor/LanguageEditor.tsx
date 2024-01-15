@@ -25,7 +25,7 @@ import "ace-builds/src-noconflict/theme-terminal";
 
 import {CustomStyle} from "../../data/styleForSelect";
 import Select from "react-select";
-import {Modal} from "../modal/Modal";
+import {ModalNotify} from "../modal/ModalNotify";
 
 
 interface ProductsEditorJSONProps {
@@ -213,7 +213,7 @@ export function LanguageEditor(props: ProductsEditorJSONProps) {
                     />
                 </div>
 
-                {isOpenModal && <Modal title={"Ошибка синтаксиса."} message={"Исправьте ошибки синтаксиса и повторите попытку."} onClose={() => closeModal()}/>}
+                {isOpenModal && <ModalNotify title={"Ошибка синтаксиса."} message={"Исправьте ошибки синтаксиса и повторите попытку."} onClose={() => closeModal()}/>}
 
             </div>
         </>

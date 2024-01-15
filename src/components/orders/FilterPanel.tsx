@@ -2,9 +2,9 @@ import React, {useEffect, useRef, useState} from 'react';
 import AsyncSelect from "react-select/async";
 import axios, {AxiosError} from "axios";
 import Select from "react-select";
-import {optionsProvider, optionsStatus} from "../data/optionsForSelect";
-import {CustomStyle} from "../data/styleForSelect";
-import {DateRange, RefType} from "./DateRange";
+import {optionsProvider, optionsStatus} from "../../data/optionsForSelect";
+import {CustomStyle} from "../../data/styleForSelect";
+import {DateRange, RefType} from "../DateRange";
 
 
 
