@@ -12,9 +12,9 @@ export function Navigation() {
         <nav className="h-[50px] flex justify-between bg-blue-800 item-center ">
             <div className="flex justify-between items-center">
                 <div className="w-60  text-center">
-                    <span className="font-bold text-xs text-white px-3">Сервис объединенных провайдеров</span>
+                        <span className="font-medium text-lg text-white px-3">Сервис EDI</span>
                 </div>
-                <div className="text-sm font-bold w-full px-3 space-x-4 text-white">
+                <div className="text-sm font-medium w-full px-3 space-x-4 text-white">
                     <button disabled={true}>Документы</button>
                     <button disabled={true}>Статистика</button>
                     <button disabled={true}>Настройки</button>

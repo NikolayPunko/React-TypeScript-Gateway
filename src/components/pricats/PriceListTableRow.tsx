@@ -22,21 +22,25 @@ function PriceListTableRow(props: RowTableProps) {
         return false;
     }
 
+    function navigateToPricat(){
+        navigate(`/pricats/${props.pricat.documentId}`);
+    }
+
     return (
         <>
-            <tr  className=" border-b table w-full h-auto table-fixed hover:bg-gray-100" >
-                <td className="px-2" style={{width: '2%'}}>#</td>
+            <tr className="border-b table w-full h-auto table-fixed hover:bg-gray-100" >
+                <td onClick={navigateToPricat} className="px-2" style={{width: '2%'}}>#</td>
                 <td className="px-1 py-2 " style={{width: '2%'}}><input type="checkbox"/></td>
-                <td className="text-xs" style={{width: '10%'}}>{props.pricat.documentStatus}</td>
-                <td className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTime))}</td>
-                <td className="text-xs" style={{width: '10%'}}>{props.pricat.documentNumber}</td>
-                <td className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.documentDate))}</td>
-                <td className="text-xs" style={{width: '10%'}}>{props.pricat.receiverId}</td>
-                <td className="text-xs" style={{width: '10%'}}>{props.pricat.senderId}</td>
-                <td className="text-xs" style={{width: '7%'}}>{props.pricat.edi}</td>
-                <td className="text-xs" style={{width: '10%'}}>{props.pricat.documentType}</td>
-                <td className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeInsert))}</td>
-                <td className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeUpdate))}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.documentStatus}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTime))}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.documentNumber}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.documentDate))}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.receiverId}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.senderId}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '7%'}}>{props.pricat.edi}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.documentType}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeInsert))}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeUpdate))}</td>
                 <td className="text-xs" style={{width: '3%'}} >
                     <button disabled={!displaySubmit()}
                         className="disabled:hidden"

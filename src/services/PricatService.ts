@@ -29,4 +29,8 @@ export default class PricatService {
         return $api.get(`${API_URL}/api/PRICAT/send/${id}`);
     }
 
+    static async getPricatById(id: number):Promise<AxiosResponse> {
+        return $api.get(`${API_URL}/api/PRICAT/${id}`);
+    }
+
 }

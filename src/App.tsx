@@ -7,8 +7,9 @@ import Authorization from "./pages/Authorization";
 import OrdersPage from "./pages/OrdersPage";
 import Order from "./pages/Order";
 import PrivateRoute from "./components/PrivateRoute";
-import PriceLists from "./pages/PricatsPage";
-import PriceListPage from "./pages/PricatPage";
+import PricatsPage from "./pages/PricatsPage";
+import PricatPage from "./pages/PricatPage";
+
 
 
 function App() {
@@ -36,8 +37,8 @@ function App() {
                         {/*<Route path="/:id" element={<Order/>} />*/}
                         {/*<Route path="/:id/edit" element={<ProductEditorJSON/>} />*/}
 
-                        <Route path="/pricats" element={<PriceLists/>} />
-                        <Route path="/pricats/:id" element={<PriceListPage/>} />
+                        <Route path="/pricats" element={<PricatsPage/>} />
+                        <Route path="/pricats/:id" element={<PricatPage/>} />
                     </Route>
 
 
