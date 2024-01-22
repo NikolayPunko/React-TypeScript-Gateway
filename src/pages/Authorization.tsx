@@ -37,10 +37,10 @@ function Authorization() {
 
 
     return (
-        <div className="w-[640px] h-[580px] px-36 rounded absolute top-14 left-1/2 -translate-x-1/2 shadow-2xl">
-            <div className="h-[220px] py-20 text-center">
-               <span className="text-3xl">
-                   Сервис объединенных провайдеров
+        <div className="w-[640px] h-[500px]  px-36 rounded absolute top-28 left-1/2 -translate-x-1/2 shadow-2xl">
+            <div className="h-[150px] py-14 text-center">
+               <span className="text-3xl font-bold">
+                   Сервис EDI
                </span>
             </div>
 
