@@ -19,6 +19,8 @@ import {
     isSameDay,
     differenceInCalendarDays
 } from "date-fns";
+import {Simulate} from "react-dom/test-utils";
+import reset = Simulate.reset;
 
 
 const defineds = {
@@ -117,6 +119,8 @@ const sideBarOptions = () => {
 
 interface DateRangeProps {
     onChangeDate: (e:any) => void
+    value: any
+    setValue: (e:any) => void
 }
 
 export interface RefType {
@@ -124,29 +128,30 @@ export interface RefType {
 }
 export function DateRange(props: DateRangeProps) {
 
-    const [value, setValue] = useState<any>({
-        startDate: new Date(),
-        endDate: new Date()
-    });
+    // const [value, setValue] = useState<any>({
+    //     startDate: new Date(),
+    //     endDate: new Date()
+    // });
 
     const [firstLoading, setFirstLoading] = useState(true);
 
     const handleChange = (newValue: any) => {
-        setValue(newValue.range1);
+        props.setValue(newValue.range1);
     }
+
 
     useEffect(() => {
         if(!firstLoading){
-            props.onChangeDate(value);
+            props.onChangeDate(props.value);
         }
         setFirstLoading(false)
-    },[value]);
+    },[props.value]);
 
 
     const [showDateRange, setShowDateRange] = useState(false);
 
-    const stringRange = new Date(value.startDate).toLocaleDateString().toString() + " - " +
-        new Date(value.endDate).toLocaleDateString().toString()
+    const stringRange = new Date(props.value.startDate).toLocaleDateString().toString() + " - " +
+        new Date(props.value.endDate).toLocaleDateString().toString()
 
 
     const sideBar:any = sideBarOptions();
@@ -173,7 +178,7 @@ export function DateRange(props: DateRangeProps) {
                             onClick={()=>{setShowDateRange(false)}}>Закрыть</button>
                 </div>
                 <DateRangePicker
-                    ranges={[value]}
+                    ranges={[props.value]}
                     onChange={handleChange}
 
                     className={"text-xs font-medium border-2 border-t-0 border-gray-200 rounded rounded-t-none shadow-lg"}

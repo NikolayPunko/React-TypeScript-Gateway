@@ -18,8 +18,8 @@ export const optionsProvider = [
 ]
 
 export const optionsPricatStatus = [
-    {value: 'DRAFT', label: 'Черновик'},
-    {value: 'IMPORTED', label: 'Импортировано'},
-    {value: 'TRANSFERRED', label: 'Передано'},
+    {value: 'DRAFT', label: 'Черновик', id: 0},
+    {value: 'IMPORTED', label: 'Импортировано', id: 1},
+    {value: 'TRANSFERRED', label: 'Передано', id: 2},
 ]
 

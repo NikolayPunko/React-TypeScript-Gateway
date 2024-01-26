@@ -17,7 +17,7 @@ interface FilterPanelPricatProps {
 export function FilterPanelPricat(props: FilterPanelPricatProps) {
 
     const [pricatNDE, setPricatNDE] = useState("");
-    const [pricatStatus, setPricatStatus] = useState<any>(optionsPricatStatus[1]);
+    const [pricatStatus, setPricatStatus] = useState<any>(optionsPricatStatus[2]);
     const [pricatDate, setPricatDate] = useState({
         startDate: new Date(),
         endDate: new Date()
@@ -60,8 +60,32 @@ export function FilterPanelPricat(props: FilterPanelPricatProps) {
 
     function resetFilter() {
         setPricatNDE("");
-        setPricatStatus(optionsPricatStatus[1]);
+        setPricatStatus(optionsPricatStatus[2]);
+        setPricatDate({
+            startDate: new Date(),
+            endDate: new Date()
+        });
     }
+
+    useEffect(() => {
+        setPricatNDE(sessionStorage.getItem('pricatNDE') || "");
+        setPricatStatus(optionsPricatStatus[sessionStorage.getItem('pricatStatus') || 2]);
+        setPricatDate({startDate: new Date(sessionStorage.getItem('pricatDateStart') || new Date()),
+            endDate: new Date(sessionStorage.getItem('pricatDateEnd') || new Date())});
+    }, []);
+
+    useEffect(() => {
+        sessionStorage.setItem('pricatNDE', pricatNDE);
+    }, [pricatNDE]);
+
+    useEffect(() => {
+        sessionStorage.setItem('pricatStatus', pricatStatus.id);
+    }, [pricatStatus]);
+
+    useEffect(() => {
+        sessionStorage.setItem('pricatDateStart', pricatDate.startDate.toString());
+        sessionStorage.setItem('pricatDateEnd', pricatDate.endDate.toString());
+    }, [pricatDate]);
 
     return (
         <div className="inline-flex w-full pb-3 border-b-2 bg-gray-50">
@@ -74,7 +98,7 @@ export function FilterPanelPricat(props: FilterPanelPricatProps) {
             </div>
             <div className="flex flex-col px-2 w-2/12">
                 <span className="text-xs font-medium py-1">Период</span>
-                <DateRange onChangeDate={e => {setPricatDate(e)}} />
+                <DateRange onChangeDate={e => {setPricatDate(e)}} value={pricatDate} setValue={setPricatDate}/>
             </div>
 
             <div className="flex flex-col px-2 w-2/12">

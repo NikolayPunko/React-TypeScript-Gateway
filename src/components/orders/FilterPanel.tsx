@@ -140,7 +140,7 @@ export function FilterPanel(props: FilterPanelProps) {
             </div>
             <div className="flex flex-col px-2 w-2/12">
                 <span className="text-xs font-medium py-1">Период</span>
-                <DateRange onChangeDate={e => {setOrderDate(e)}} />
+                {/*<DateRange onChangeDate={e => {setOrderDate(e)}} />*/}
             </div>
             <div className="flex flex-col px-2 w-2/12">
                 <span className="text-xs font-medium py-1">Контрагент</span>
