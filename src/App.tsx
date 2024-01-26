@@ -19,7 +19,7 @@ function App() {
     const [isCheckAuth, setIsCheckAuth] = useState(false);
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
+        if (sessionStorage.getItem('token')) {
             store.checkAuth().then(() => setIsCheckAuth(true));
         } else {
             setIsCheckAuth(true)
@@ -37,6 +37,7 @@ function App() {
                         {/*<Route path="/:id" element={<Order/>} />*/}
                         {/*<Route path="/:id/edit" element={<ProductEditorJSON/>} />*/}
 
+                        <Route path="/" element={<Authorization/>} />
                         <Route path="/pricats" element={<PricatsPage/>} />
                         <Route path="/pricats/:id" element={<PricatPage/>} />
                     </Route>

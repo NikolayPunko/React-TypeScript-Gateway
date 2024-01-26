@@ -4,6 +4,7 @@ import axios, {AxiosError} from "axios";
 import {ModalError} from "../components/error/ModalError";
 import {observer} from "mobx-react-lite";
 import PricatService from "../services/PricatService";
+import XMLViewer from "react-xml-viewer";
 
 
 function PricatPage() {
@@ -57,10 +58,7 @@ function PricatPage() {
 
                 {!isLoading && <>
                     <div className="flex flex-col px-10 text-sm py-3">
-                        <span>
-                            {xml}
-                        </span>
-
+                        <XMLViewer xml={xml} indentSize={5} />
                     </div>
 
                     <div className="h-16 border-t-2 flex flex-row items-center px-10">

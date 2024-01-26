@@ -12,7 +12,7 @@ function Authorization() {
 
     const navigate = useNavigate();
     const location = useLocation()
-    const from = location.state?.from?.pathname || '/pricats'
+    const from = '/pricats'
 
     const [defaultInput, setDefaultInput] = useState(true);
     const [hidePassword, setHidePassword] = useState(true);
@@ -25,8 +25,10 @@ function Authorization() {
 
     function login() {
         store.login(username, password).then(() => {
-            if (store.isAuth)
+            if (store.isAuth){
                 navigate(from, {replace: true});
+            }
+
         });
 
     }

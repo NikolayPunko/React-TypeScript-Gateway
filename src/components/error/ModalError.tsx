@@ -10,7 +10,7 @@ export function ModalError({title} : ModalErrorProps) {
     return (
         <>
             <div
-                className="fixed bg-white top-0 right-0 left-0 bottom-0"
+                className="fixed z-40 bg-white top-0 right-0 left-0 bottom-0"
                 // onClick={onClose}
             >
             <div
@@ -18,7 +18,7 @@ export function ModalError({title} : ModalErrorProps) {
                 // onClick={onClose}
             />
             <div
-                className="w-[500px] p-5 z-30  rounded bg-white absolute top-1/3 left-1/2 -translate-x-1/2"
+                className="w-[500px] p-5 z-50  rounded bg-white absolute top-1/3 left-1/2 -translate-x-1/2"
             >
                 <h1 className="text-xl text-center mb-2">{title}</h1>
 
