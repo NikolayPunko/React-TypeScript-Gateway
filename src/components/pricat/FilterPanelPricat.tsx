@@ -16,13 +16,10 @@ interface FilterPanelPricatProps {
 
 export function FilterPanelPricat(props: FilterPanelPricatProps) {
 
-    const [pricatNDE, setPricatNDE] = useState("");
-    const [pricatStatus, setPricatStatus] = useState<any>(optionsPricatStatus[2]);
-    const [pricatDate, setPricatDate] = useState({
-        startDate: new Date(),
-        endDate: new Date()
-    });
-
+    const [pricatNDE, setPricatNDE] = useState(sessionStorage.getItem('pricatNDE') || "");
+    const [pricatStatus, setPricatStatus] = useState<any>(optionsPricatStatus[sessionStorage.getItem('pricatStatus') || 2]);
+    const [pricatDate, setPricatDate] = useState({startDate: new Date(sessionStorage.getItem('pricatDateStart') || new Date()),
+        endDate: new Date(sessionStorage.getItem('pricatDateEnd') || new Date())});
 
     const handleChangeNDE = (event: any) => {
         setPricatNDE(event.target.value);
@@ -67,12 +64,7 @@ export function FilterPanelPricat(props: FilterPanelPricatProps) {
         });
     }
 
-    useEffect(() => {
-        setPricatNDE(sessionStorage.getItem('pricatNDE') || "");
-        setPricatStatus(optionsPricatStatus[sessionStorage.getItem('pricatStatus') || 2]);
-        setPricatDate({startDate: new Date(sessionStorage.getItem('pricatDateStart') || new Date()),
-            endDate: new Date(sessionStorage.getItem('pricatDateEnd') || new Date())});
-    }, []);
+
 
     useEffect(() => {
         sessionStorage.setItem('pricatNDE', pricatNDE);
