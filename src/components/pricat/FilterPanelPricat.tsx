@@ -6,12 +6,14 @@ import {optionsPricatStatus, optionsStatus} from "../../data/optionsForSelect";
 
 
 interface FilterPanelPricatProps {
-    fetchPricatsByFilter: (pricatNDE:any, pricatStatus:any, pricatDate:any, page:any) => void
+    fetchPricats: (pricatNDE:any, pricatStatus:any, pricatDate:any, page:any) => void
     fetchPricatsPaginated: (pricatNDE:any, pricatStatus:any, pricatDate:any, page:any) => void
     fetching: boolean
     currentPage: any
     setFetching: (bool: boolean) => void
     updateFlag: boolean
+    setIsMaxPage: (bool: boolean) => void
+
 }
 
 export function FilterPanelPricat(props: FilterPanelPricatProps) {
@@ -35,12 +37,14 @@ export function FilterPanelPricat(props: FilterPanelPricatProps) {
 
 
     useEffect(() => {
-        props.fetchPricatsByFilter(
+        // props.setIsMaxPage(false);
+        props.fetchPricats(
             pricatNDE,
             pricatStatus,
             pricatDate,
-            props.currentPage
-        )
+            1
+        );
+        props.setFetching(false);
     }, [pricatNDE, pricatStatus, pricatDate, props.updateFlag]);
 
 
@@ -53,6 +57,7 @@ export function FilterPanelPricat(props: FilterPanelPricatProps) {
                 props.currentPage
             )
         }
+        // props.setFetching(false);
     }, [props.fetching]);
 
     function resetFilter() {

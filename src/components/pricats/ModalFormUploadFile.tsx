@@ -42,7 +42,7 @@ export function ModalFormUploadFile({onClose, importFile} : ModalFormUploadFileP
                 </div>
                 <div className="flex flex-row justify-end items-center bg-white my-2">
                     <button onClick={onClose} className="px-2 mx-2 h-7  rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200">
-                        Зыкрыть
+                        Закрыть
                     </button>
                     <button onClick={uploadFile} className="text-xs h-7 font-medium px-2 py-1 rounded bg-blue-700 text-white hover:bg-blue-800">
                         Импортировать

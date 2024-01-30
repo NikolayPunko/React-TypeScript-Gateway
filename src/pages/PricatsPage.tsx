@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {LeftNavigation} from "../components/leftNavigation/LeftNavigation";
 import {Navigation} from "../components/Navigation";
 import {AxiosError} from "axios";
@@ -25,6 +25,7 @@ function PricatsPage() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [fetching, setFetching] = useState(false);
+    const [isMaxPage, setIsMaxPage] = useState<boolean>(false);
 
 
     const [isModalImport, setIsModalImport] = useState(false);
@@ -37,7 +38,7 @@ function PricatsPage() {
 
     const [pricatForSend, setPricatForSend] = useState<any>(null);
     function isFetching(bool: boolean) {
-        // setFetching(bool); //поправить пагинацию
+        setFetching(bool); //поправить пагинацию
     }
 
 
@@ -84,14 +85,18 @@ function PricatsPage() {
     }
 
 
-    async function fetchPricatsByFilter(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
+    async function fetchPricatsByFilter(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any, replace: boolean) {
         try {
             setError('');
             setIsLoading(true);
             const response = await PricatService.getPricats(pricatNDE, pricatStatus, pricatDate, page)
-            setPricats(response.data);
-            // setPricats([...pricats, ...response.data]);
-
+            if(replace){
+                // if(response.data.length === 0)
+                //     setIsMaxPage(true)
+                setPricats([...pricats, ...response.data]);
+            } else {
+                setPricats(response.data)
+            }
             setIsLoading(false);
         } catch (e: unknown) {
             const error = e as AxiosError;
@@ -100,10 +105,19 @@ function PricatsPage() {
         }
     }
 
-    async function fetchOrdersPaginated(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
-        await fetchPricatsByFilter(pricatNDE, pricatStatus, pricatDate, page+1)
-        setCurrentPage(prevState => prevState + 1)
-        setFetching(false)
+    async function fetchPricats(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
+        // setIsMaxPage(false);
+        setCurrentPage(1);
+        await fetchPricatsByFilter(pricatNDE, pricatStatus, pricatDate, 1, false);
+
+    }
+
+    async function fetchPricatsPaginated(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
+        if(!isMaxPage){
+            await fetchPricatsByFilter(pricatNDE, pricatStatus, pricatDate, page+1, true)
+            setCurrentPage(prevState => prevState + 1)
+            setFetching(false); //пересмотреть значение на последней странице
+        }
     }
 
     function showModalImport(){
@@ -134,6 +148,9 @@ function PricatsPage() {
                         </div>
                         <div className="inline-flex w-1/2 justify-end">
 
+                            {/*<span onClick={() => {*/}
+                            {/*    console.log(fetching)*/}
+                            {/*}}>тест</span>*/}
                             <button
                                 className="px-2 mx-5 h-7 w-20 rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200 inline-flex items-center"
                                 onClick={() => showModalImport()}>
@@ -149,9 +166,9 @@ function PricatsPage() {
                         </div>
                     </div>
 
-                    <FilterPanelPricat fetchPricatsByFilter={fetchPricatsByFilter} fetchPricatsPaginated={fetchOrdersPaginated}
+                    <FilterPanelPricat fetchPricats={fetchPricats} fetchPricatsPaginated={fetchPricatsPaginated}
                                  fetching={fetching} currentPage={currentPage} setFetching={isFetching}
-                                       updateFlag={updateFlag}/>
+                                       updateFlag={updateFlag} setIsMaxPage={setIsMaxPage}/>
 
 
                     {error == '' && <PriceListTable pricats={pricats} isLoading={isLoading} setFetching={isFetching} sendPricat={pressButSend}/>}
