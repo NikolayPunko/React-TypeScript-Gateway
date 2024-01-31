@@ -32,16 +32,17 @@ function PriceListTableRow(props: RowTableProps) {
             <tr className="border-b table w-full h-auto table-fixed hover:bg-gray-100" >
                 <td onClick={navigateToPricat} className="px-2" style={{width: '2%'}}>#</td>
                 <td className="px-1 py-2 " style={{width: '2%'}}><input type="checkbox"/></td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '7%'}}>{props.pricat.documentId}</td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.documentStatus}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTime))}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '7%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTime))}</td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.documentNumber}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.documentDate))}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '11%'}}>{findLabelByGln(props.pricat.receiverId) + " "}<span className="text-gray-400">{props.pricat.receiverId}</span></td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '11%'}}>{findLabelByGln(props.pricat.senderId) + " " }<span className="text-gray-400">{props.pricat.senderId}</span></td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '8%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.documentDate))}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{findLabelByGln(props.pricat.receiverId) + " "}<span className="text-gray-400">{props.pricat.receiverId}</span></td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{findLabelByGln(props.pricat.senderId) + " " }<span className="text-gray-400">{props.pricat.senderId}</span></td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '7%'}}>{props.pricat.edi}</td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '8%'}}>{props.pricat.documentType}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeInsert))}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeUpdate))}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '8%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeInsert))}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '8%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeUpdate))}</td>
                 <td className="text-xs" style={{width: '3%'}} >
                     <button disabled={!displaySubmit()}
                         className="disabled:hidden"
