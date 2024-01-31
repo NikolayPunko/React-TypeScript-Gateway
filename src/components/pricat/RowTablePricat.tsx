@@ -28,10 +28,10 @@ export function RowTablePricat(props: RowTablePriceListProps) {
 
     return (
         <>
-            <tr className="table w-full h-auto table-fixed hover:bg-gray-200">
+            <tr className="table w-full h-auto table-fixed hover:bg-gray-200 border-b-2">
                 <td className="px-2 text-xs" style={{width: '4%'}}>{props.product.LIN?.E1082}</td>
                 <td className="py-3 text-xs" style={{width: '10%'}}>{props.product.LIN?.C212?.E7140}</td>
-                <td className="text-xs" style={{width: '36%'}}>{findName()}</td>
+                <td className="text-xs" style={{width: '28%'}}>{findName()}</td>
 
                 <td className="text-xs" style={{width: '8%'}}>{props.product.MEA?.C174?.E6314}</td>
 
@@ -43,12 +43,13 @@ export function RowTablePricat(props: RowTablePriceListProps) {
                 <td className="text-xs" style={{width: '6%'}}>{findPackageSize("LN")}</td>
                 <td className="text-xs" style={{width: '6%'}}>{findPackageSize("WD")}</td>
                 <td className="text-xs" style={{width: '6%'}}>{findPackageSize("HT")}</td>
+                <td className="text-xs" style={{width: '8%'}}>{props.product.PIA?.C212?.E7140}</td>
             </tr>
-            <tr className="table w-full h-auto table-fixed border-b-2">
-                <td className="bg-gray-100 text-xs py-1 px-1">
-                    Код товара, присвоенный покупателем: <span className="">{props.product.PIA?.C212?.E7140}</span>
-                </td>
-            </tr>
+            {/*<tr className="table w-full h-auto table-fixed border-b-2">*/}
+            {/*    <td className="bg-gray-100 text-xs py-1 px-1">*/}
+            {/*        Код товара, присвоенный покупателем: <span className="">{props.product.PIA?.C212?.E7140}</span>*/}
+            {/*    </td>*/}
+            {/*</tr>*/}
         </>
     )
 }

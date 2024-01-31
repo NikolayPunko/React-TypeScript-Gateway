@@ -157,7 +157,7 @@ function PricatPage() {
                                     <th className="px-2 text-xs font-medium text-left" style={{width: '4%'}}>№</th>
 
                                     <th className=" text-xs font-medium text-left " style={{width: '10%'}}>GTIN</th>
-                                    <th className="text-xs font-medium text-left " style={{width: '36%'}}>Наименование товара</th>
+                                    <th className="text-xs font-medium text-left " style={{width: '28%'}}>Наименование товара</th>
                                     <th className="text-xs font-medium text-left " style={{width: '8%'}}>Грамматура</th>
                                     <th className="text-xs font-medium text-left " style={{width: '8%'}}>Отпускная цена без НДС</th>
                                     {/*<th className="text-xs font-medium text-left " style={{width: '8%'}}>Ставка НДС, %</th>*/}
@@ -166,6 +166,7 @@ function PricatPage() {
                                     <th className="text-xs font-medium  text-left " style={{width: '6%'}}>Длина</th>
                                     <th className="text-xs font-medium  text-left " style={{width: '6%'}}>Ширина</th>
                                     <th className="text-xs font-medium  text-left " style={{width: '6%'}}>Высота</th>
+                                    <th className="text-xs font-medium  text-left " style={{width: '8%'}}>Код товара</th>
 
                                 </tr>
 
