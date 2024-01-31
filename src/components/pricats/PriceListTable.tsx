@@ -33,10 +33,10 @@ interface PriceListTableProps {
                     <th className={style_th + "py-3"} style={{width: '9%'}}>Дата и время</th>
                     <th className={style_th} style={{width: '10%'}}>Номер сообщения</th>
                     <th className={style_th} style={{width: '9%'}}>Дата сообщения</th>
-                    <th className={style_th} style={{width: '10%'}}>Покупатель</th>
-                    <th className={style_th} style={{width: '10%'}}>Поставщик</th>
+                    <th className={style_th} style={{width: '11%'}}>Покупатель</th>
+                    <th className={style_th} style={{width: '11%'}}>Поставщик</th>
                     <th className={style_th} style={{width: '7%'}}>Провайдер</th>
-                    <th className={style_th} style={{width: '10%'}}>Тип документа</th>
+                    <th className={style_th} style={{width: '8%'}}>Тип документа</th>
                     <th className={style_th} style={{width: '9%'}}>Дата создания</th>
                     <th className={style_th} style={{width: '9%'}}>Дата обновления</th>
                     <th className={style_th} style={{width: '3%'}}></th>

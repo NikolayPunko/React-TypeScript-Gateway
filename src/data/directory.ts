@@ -6,9 +6,9 @@ export const userDirectory = [
 
 ]
 
-export function findLabelByGln(gln: string){
+export function findLabelByGln(gln: any){
     for (let i = 0; i < userDirectory.length; i++) {
-        if(userDirectory[i].gln == gln)
+        if(userDirectory[i].gln == new String(gln))
             return userDirectory[i].label
     }
     return '';

@@ -4,6 +4,7 @@ import {observer} from "mobx-react-lite";
 import {PricatsResponse} from "../../models/response/PricatsResponse";
 import {ParseDateToFormatYYYY_MM_dd_HH_mm_ss} from "../../utils/ParseDate";
 import {Context} from "../../index";
+import {findLabelByGln} from "../../data/directory";
 
 
 interface RowTableProps {
@@ -35,10 +36,10 @@ function PriceListTableRow(props: RowTableProps) {
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTime))}</td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.documentNumber}</td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.documentDate))}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.receiverId}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.senderId}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '11%'}}>{findLabelByGln(props.pricat.receiverId) + " "}<span className="text-gray-400">{props.pricat.receiverId}</span></td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '11%'}}>{findLabelByGln(props.pricat.senderId) + " " }<span className="text-gray-400">{props.pricat.senderId}</span></td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '7%'}}>{props.pricat.edi}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.pricat.documentType}</td>
+                <td onClick={navigateToPricat} className="text-xs" style={{width: '8%'}}>{props.pricat.documentType}</td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeInsert))}</td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '9%'}}>{ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.pricat.dateTimeUpdate))}</td>
                 <td className="text-xs" style={{width: '3%'}} >
