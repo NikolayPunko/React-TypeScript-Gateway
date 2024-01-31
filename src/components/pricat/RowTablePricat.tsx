@@ -31,15 +31,15 @@ export function RowTablePricat(props: RowTablePriceListProps) {
             <tr className="table w-full h-auto table-fixed hover:bg-gray-200">
                 <td className="px-2 text-xs" style={{width: '4%'}}>{props.product.LIN?.E1082}</td>
                 <td className="py-3 text-xs" style={{width: '10%'}}>{props.product.LIN?.C212?.E7140}</td>
-                <td className="text-xs" style={{width: '28%'}}>{findName()}</td>
+                <td className="text-xs" style={{width: '36%'}}>{findName()}</td>
 
                 <td className="text-xs" style={{width: '8%'}}>{props.product.MEA?.C174?.E6314}</td>
 
                 <td className="text-xs" style={{width: '8%'}}>{props.product.SG40?.PRI?.C509?.E5118}</td>
-                <td className="text-xs" style={{width: '8%'}}>{props.product.SG38?.TAX?.C243?.E5278}</td>
-                <td className="text-xs" style={{width: '8%'}}>null</td>
+                {/*<td className="text-xs" style={{width: '8%'}}>{props.product.SG38?.TAX?.C243?.E5278}</td>*/}
+                <td className="text-xs" style={{width: '8%'}}>{props.product.DTM?.C507?.E2380}</td>
 
-                <td className="text-xs" style={{width: '8%'}}>null</td>
+                <td className="text-xs" style={{width: '8%'}}>{props.product.QTY?.C186?.E6060}</td>
                 <td className="text-xs" style={{width: '6%'}}>{findPackageSize("LN")}</td>
                 <td className="text-xs" style={{width: '6%'}}>{findPackageSize("WD")}</td>
                 <td className="text-xs" style={{width: '6%'}}>{findPackageSize("HT")}</td>

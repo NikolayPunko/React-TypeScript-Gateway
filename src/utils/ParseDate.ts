@@ -22,6 +22,11 @@ export function ParseStringDateToFormatYYYYMMddTHHmmsstttZ(str: string){
     return ParseDateToFormatYYYYMMddTHHmmsstttZ(new Date(str))
 }
 
+export function parseXMLToDateToFormatYYYY_MM_dd(str: string){
+    let result = str.substring(0,4) + "-" + str.substring(4,6) + "-" + str.substring(6,8);
+    return result
+}
+
 export function setEndOfDay(date: Date){
     date.setHours(23)
     date.setMinutes(59)

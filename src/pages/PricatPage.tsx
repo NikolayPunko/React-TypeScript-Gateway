@@ -7,6 +7,7 @@ import PricatService from "../services/PricatService";
 import XMLViewer from "react-xml-viewer";
 import {XMLBuilder, XMLParser} from "fast-xml-parser";
 import {RowTablePricat} from "../components/pricat/RowTablePricat";
+import {ParseDateToFormatYYYY_MM_dd, parseXMLToDateToFormatYYYY_MM_dd} from "../utils/ParseDate";
 
 
 
@@ -80,11 +81,10 @@ function PricatPage() {
             <div className="flex flex-col">
                 <div className="bg-gray-100 h-14 flex flex-row items-center justify-center border-b-2 ">
                     <span className="font-semibold text-xl">Прайс-лист</span>
-
-                        <button className="px-2 mx-5 h-7  rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200 inline-flex items-center"
-                                onClick={() => setXmlPage(!xmlPage)}>XML | Таблица</button>
-
                 </div>
+
+                <button className="px-2 h-7  absolute top-16 z-5 right-5  rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200 inline-flex items-center"
+                        onClick={() => setXmlPage(!xmlPage)}>XML | Таблица</button>
 
                 {isLoading && <div className="py-5 text-center ">Загрузка...</div>}
 
@@ -110,7 +110,7 @@ function PricatPage() {
 
                             <div className={propertyStyle}>
                                 <div className="w-1/2">Дата:</div>
-                                <div className="w-1/2 px-1">{new Date(xmlObj.PRICAT?.DTM?.C507?.E2380).toLocaleString()}</div>
+                                <div className="w-1/2 px-1">{parseXMLToDateToFormatYYYY_MM_dd(String(xmlObj.PRICAT?.DTM?.C507?.E2380))}</div>
                             </div>
 
                         </div>
@@ -157,10 +157,10 @@ function PricatPage() {
                                     <th className="px-2 text-xs font-medium text-left" style={{width: '4%'}}>№</th>
 
                                     <th className=" text-xs font-medium text-left " style={{width: '10%'}}>GTIN</th>
-                                    <th className="text-xs font-medium text-left " style={{width: '28%'}}>Наименование товара</th>
+                                    <th className="text-xs font-medium text-left " style={{width: '36%'}}>Наименование товара</th>
                                     <th className="text-xs font-medium text-left " style={{width: '8%'}}>Грамматура</th>
                                     <th className="text-xs font-medium text-left " style={{width: '8%'}}>Отпускная цена без НДС</th>
-                                    <th className="text-xs font-medium text-left " style={{width: '8%'}}>Ставка НДС, %</th>
+                                    {/*<th className="text-xs font-medium text-left " style={{width: '8%'}}>Ставка НДС, %</th>*/}
                                     <th className="text-xs font-medium  text-left " style={{width: '8%'}}>Срок годности</th>
                                     <th className="text-xs font-medium  text-left " style={{width: '8%'}}>Кол-во в 1тм. шт</th>
                                     <th className="text-xs font-medium  text-left " style={{width: '6%'}}>Длина</th>
