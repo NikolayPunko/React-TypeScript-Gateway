@@ -8,6 +8,7 @@ import XMLViewer from "react-xml-viewer";
 import {XMLBuilder, XMLParser} from "fast-xml-parser";
 import {RowTablePricat} from "../components/pricat/RowTablePricat";
 import {ParseDateToFormatYYYY_MM_dd, parseXMLToDateToFormatYYYY_MM_dd} from "../utils/ParseDate";
+import {findLabelByGln} from "../data/directory";
 
 
 
@@ -117,10 +118,10 @@ function PricatPage() {
 
                         <div className="flex flex-col w-1/2 py-1">
                             <span className="font-bold pb-1">Покупатель</span>
-                            {/*<div className={propertyStyle}>*/}
-                            {/*    <div className="w-1/2">Наименование:</div>*/}
-                            {/*    <div className="w-1/2 px-1">{findBYOrSU("BY")}</div>*/}
-                            {/*</div>*/}
+                            <div className={propertyStyle}>
+                                <div className="w-1/2">Наименование:</div>
+                                <div className="w-1/2 px-1">{findLabelByGln(findBYOrSU("BY"))}</div>
+                            </div>
                             <div className={propertyStyle}>
                                 <div className="w-1/2">GLN:</div>
                                 <div className="w-1/2 px-1">{findBYOrSU("BY")}</div>
@@ -129,10 +130,10 @@ function PricatPage() {
 
                         <div className="flex flex-col w-1/2 py-1">
                             <span className="font-bold pb-1">Поставщик</span>
-                            {/*<div className={propertyStyle}>*/}
-                            {/*    <div className="w-1/2">Наименование:</div>*/}
-                            {/*    <div className="w-1/2 px-1">{findBYOrSU("SU")}</div>*/}
-                            {/*</div>*/}
+                            <div className={propertyStyle}>
+                                <div className="w-1/2">Наименование:</div>
+                                <div className="w-1/2 px-1">{findLabelByGln(findBYOrSU("SU"))}</div>
+                            </div>
                             <div className={propertyStyle}>
                                 <div className="w-1/2">GLN:</div>
                                 <div className="w-1/2 px-1">{findBYOrSU("SU")}</div>

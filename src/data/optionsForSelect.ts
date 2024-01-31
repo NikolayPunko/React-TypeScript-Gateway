@@ -23,3 +23,5 @@ export const optionsPricatStatus = [
     {value: 'TRANSFERRED', label: 'Передано', id: 2},
 ]
 
+
+
