@@ -9,6 +9,7 @@ import Order from "./pages/Order";
 import PrivateRoute from "./components/PrivateRoute";
 import PricatsPage from "./pages/PricatsPage";
 import PricatPage from "./pages/PricatPage";
+import ProfilePage from "./pages/settings/ProfilePage";
 
 
 
@@ -40,6 +41,8 @@ function App() {
                         <Route path="/" element={<Authorization/>} />
                         <Route path="/pricats" element={<PricatsPage/>} />
                         <Route path="/pricats/:id" element={<PricatPage/>} />
+
+                        <Route path="/settings/profile" element={<ProfilePage/>} />
                     </Route>
 
 

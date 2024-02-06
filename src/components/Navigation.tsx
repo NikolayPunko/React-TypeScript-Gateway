@@ -17,7 +17,7 @@ export function Navigation() {
                 <div className="text-sm font-medium w-full px-3 space-x-4 text-white">
                     <button disabled={true}>Документы</button>
                     <button disabled={true}>Статистика</button>
-                    <button disabled={true}>Настройки</button>
+                    <button disabled={false} onClick={() => navigate("/settings/profile")}>Настройки</button>
                 </div>
             </div>
 
