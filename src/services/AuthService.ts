@@ -9,7 +9,7 @@ export default class AuthService {
     }
 
     static async getAuthorizedUserData():Promise<AxiosResponse<IUser>> {
-        return $api.get<IUser>(`${API_URL}/user/profile`);
+        return $api.get<IUser>(`${API_URL}/api/user/profile`);
     }
 
 }

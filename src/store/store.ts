@@ -59,4 +59,15 @@ export default class Store {
         }
     }
 
+    async updateAuth(){
+        try {
+            const response = await AuthService.getAuthorizedUserData(); //временно, после доделать запрос на refresh и валидность токена
+            // console.log(response)
+            this.setAuth(true);
+            this.setUser(response.data as IUser);
+        } catch (e:any){
+            console.log(e.response?.data?.message)
+        }
+    }
+
 }

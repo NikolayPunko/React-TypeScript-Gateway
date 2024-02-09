@@ -1,11 +1,28 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import {Context} from "../index";
+import {arrowDown, arrowUp} from "../data/icons";
 
 
 export function Navigation() {
     const {store} = useContext(Context);
     const navigate = useNavigate();
+
+    const [dropdownSettings, setDropdownSettings] = useState<boolean>(false);
+
+
+    const container = useRef<any>();
+
+    const handleClickOutside = (e) => {
+        if (container.current && !container.current.contains(e.target)) {
+            setDropdownSettings(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown",  handleClickOutside);
+    }, []);
 
     return (
 
@@ -14,10 +31,39 @@ export function Navigation() {
                 <div className="w-60  text-center">
                         <span className="font-medium text-lg text-white px-3">Сервис EDI</span>
                 </div>
-                <div className="text-sm font-medium w-full px-3 space-x-4 text-white">
-                    <button disabled={true}>Документы</button>
-                    <button disabled={true}>Статистика</button>
-                    <button disabled={false} onClick={() => navigate("/settings/profile")}>Настройки</button>
+                <div className="flex flex-row text-sm font-medium w-full px-3 space-x-4 text-white">
+                    <button disabled={false} onClick={() => navigate("/pricats")}>Документы</button>
+                    <div>
+                        <div className="flex flex-row items-center">
+                            <button disabled={true}>Статистика</button>
+                            <div className="pl-1 pt-1">
+                                {arrowUp}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ref={container}>
+                        <div className="flex flex-row items-center" >
+                            <button disabled={false} onClick={() => setDropdownSettings(prev => !prev)}>Настройки</button>
+                            <div className="pl-1 pt-1">
+                                {dropdownSettings && arrowDown}
+                                {!dropdownSettings && arrowUp}
+                            </div>
+                        </div>
+
+                        {dropdownSettings &&
+                            <div className="absolute z-50 text-xs py-3 mt-2 border-1 rounded shadow bg-white text-black">
+                                <ul className="">
+                                    <li className="px-3 py-1 hover:bg-blue-700 hover:text-white ">Моя организация</li>
+                                    <li className="px-3 py-1 hover:bg-blue-700 hover:text-white " onClick={() => navigate("/settings/profile")}>Мой профиль</li>
+                                    <li className="px-3 py-1 hover:bg-blue-700 hover:text-white ">Контрагенты</li>
+                                    <li className="px-3 py-1 hover:bg-blue-700 hover:text-white ">Управление пользователями</li>
+                                    <li className="px-3 py-1 hover:bg-blue-700 hover:text-white ">Уведомления</li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+
                 </div>
             </div>
 

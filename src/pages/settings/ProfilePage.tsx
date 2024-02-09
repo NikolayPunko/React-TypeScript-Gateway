@@ -6,21 +6,67 @@ import {Context} from "../../index";
 import {IUser} from "../../models/IUser";
 import {ModalFormUploadFile} from "../../components/pricats/ModalFormUploadFile";
 import {PasswordChange} from "../../components/settings/profile/PasswordChange";
+import {ModalNotify} from "../../components/modal/ModalNotify";
+import {PricatsResponse} from "../../models/response/PricatsResponse";
+import PricatService from "../../services/PricatService";
+import UserService from "../../services/UserService";
+import {ChangePasswordRequest} from "../../models/request/ChangePasswordRequest";
+import {AxiosError} from "axios";
 
 function ProfilePage() {
 
     const {store} = useContext(Context);
     const navigate = useNavigate();
 
+    const [error, setError] = useState('');
+
     const [profile, setProfile] = useState<IUser | any>({})
     const [isModalPassword, setIsModalPassword] = useState<boolean>(false);
+
+    const [isModalResultEditProfile, setIsModalResultEditProfile] = useState(false);
+    const [modalMsg, setModalMsg] = useState('');
+
+    const [isUpdatedProfile, setIsUpdatedProfile] = useState(false);
+
+
+
 
     useEffect(() => {
       setProfile(store?.user);
     }, []);
 
+    useEffect(() => {
+        if(isUpdatedProfile){
+           store.updateAuth();
+        }
+        setIsUpdatedProfile(false);
+    }, [isUpdatedProfile]);
+
+    async function editProfile(){
+        try {
+            const response = await UserService.editProfile(profile);
+            setModalMsg("Данные профиля успешно изменены. Изменения вступят в силу в ближайшее время!");
+            setError('')
+        } catch (e: AxiosError | any) {
+            setModalMsg("Ошибка! Отредактируйте данные и попробуйте еще раз.")
+            setError(e.response.data.message)
+        } finally {
+            setIsModalResultEditProfile(true)
+        }
+    }
+
     function showModalPassword(){
         setIsModalPassword(!isModalPassword)
+    }
+
+    function closeModalResultEditProfile(){
+        setIsModalResultEditProfile(!isModalResultEditProfile)
+        if(error == '') {
+            if(store.user.username !== profile.username){
+                store.logout();
+            }
+            setIsUpdatedProfile(true)
+        }
     }
 
     const styleInput = "border rounded border-slate-400 px-2 text-sm h-[28px] w-96 outline-blue-700 focus-visible:outline-1  hover:border-blue-700 disabled:bg-gray-100 disabled:text-gray-500"
@@ -43,9 +89,7 @@ function ProfilePage() {
                         </button>
                         <button
                             className="px-2 h-7 rounded text-xs font-medium shadow-sm border border-slate-400 bg-blue-700 text-white hover:bg-blue-800"
-                            onClick={() => {
-                                console.log(profile)
-                            }}>Сохранить
+                            onClick={() => editProfile()}>Сохранить
                         </button>
                     </div>
                 </div>
@@ -84,6 +128,8 @@ function ProfilePage() {
                 </div>
 
                 {isModalPassword && <PasswordChange onClose={showModalPassword}></PasswordChange>}
+
+                {isModalResultEditProfile && <ModalNotify title={"Результат операции"} message={modalMsg} onClose={closeModalResultEditProfile}/>}
 
             </div>
         </>
