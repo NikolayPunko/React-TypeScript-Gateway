@@ -7,7 +7,7 @@ import PricatService from "../services/PricatService";
 import XMLViewer from "react-xml-viewer";
 import {XMLBuilder, XMLParser} from "fast-xml-parser";
 import {RowTablePricat} from "../components/pricat/RowTablePricat";
-import {ParseDateToFormatYYYY_MM_dd, parseXMLToDateToFormatYYYY_MM_dd} from "../utils/ParseDate";
+import ParseDate from "../utils/ParseDate";
 import {findLabelByGln} from "../data/directory";
 
 
@@ -111,7 +111,7 @@ function PricatPage() {
 
                             <div className={propertyStyle}>
                                 <div className="w-1/2">Дата:</div>
-                                <div className="w-1/2 px-1">{parseXMLToDateToFormatYYYY_MM_dd(String(xmlObj.PRICAT?.DTM?.C507?.E2380))}</div>
+                                <div className="w-1/2 px-1">{ParseDate.parseXMLToDateToFormatYYYY_MM_dd(String(xmlObj.PRICAT?.DTM?.C507?.E2380))}</div>
                             </div>
 
                         </div>

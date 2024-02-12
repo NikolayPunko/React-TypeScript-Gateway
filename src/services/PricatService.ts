@@ -1,5 +1,5 @@
 import {AxiosResponse} from "axios";
-import {ParseDateToFormatYYYYMMddTHHmmsstttZ, setEndOfDay, setStartOfDay} from "../utils/ParseDate";
+import ParseDate from "../utils/ParseDate";
 import $api, {API_URL} from "../http";
 import {PricatsResponse} from "../models/response/PricatsResponse";
 
@@ -9,8 +9,8 @@ export default class PricatService {
     static async getPricats(pricatNDE:any, pricatStatus:any, pricatDate:any, page: any):Promise<AxiosResponse<PricatsResponse[]>> {
         return $api.post<PricatsResponse[]>(`${API_URL}/api/PRICAT/${pricatStatus.value}/list?page=${page}&size=100`,
             {
-                "documentDateEnd": ParseDateToFormatYYYYMMddTHHmmsstttZ(setEndOfDay(pricatDate.endDate)),
-                "documentDateStart": ParseDateToFormatYYYYMMddTHHmmsstttZ(setStartOfDay(pricatDate.startDate)),
+                "documentDateEnd": ParseDate.ParseDateToFormatYYYYMMddTHHmmsstttZ(ParseDate.setEndOfDay(pricatDate.endDate)),
+                "documentDateStart": ParseDate.ParseDateToFormatYYYYMMddTHHmmsstttZ(ParseDate.setStartOfDay(pricatDate.startDate)),
                 "documentNumber": pricatNDE
             });
     }

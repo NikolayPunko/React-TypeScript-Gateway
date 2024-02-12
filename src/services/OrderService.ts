@@ -1,5 +1,5 @@
 import axios, {AxiosResponse} from "axios";
-import {ParseDateToFormatYYYY_MM_dd} from "../utils/ParseDate";
+import ParseDate from "../utils/ParseDate";
 
 export default class OrderService {
 
@@ -9,8 +9,8 @@ export default class OrderService {
                 "TP": "ORDERS", //TP - тип документа, для заявок значение "ORDERS",
                 "EDI": "001",  //EDI - код EDI-оператора, возможно будем указывать имя
                 "cmd": "filteredList",
-                "DTBEG": ParseDateToFormatYYYY_MM_dd(orderDate.startDate),  //DTBEG-DTEND, даты начала и конца периода выборки,
-                "DTEND": ParseDateToFormatYYYY_MM_dd(orderDate.endDate),
+                "DTBEG": ParseDate.ParseDateToFormatYYYY_MM_dd(orderDate.startDate),  //DTBEG-DTEND, даты начала и конца периода выборки,
+                "DTEND": ParseDate.ParseDateToFormatYYYY_MM_dd(orderDate.endDate),
                 "row_count": page * 50,  //row_count - сколько записей выводить за раз,
                 "ID": 0,  //ID -начиная с какого ID выводить записи,
                 "sender": orderAgent,  //sender - необязательный параметр, для фильтрации по поставщику

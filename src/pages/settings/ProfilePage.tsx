@@ -4,14 +4,12 @@ import {Navigation} from "../../components/Navigation";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
 import {IUser} from "../../models/IUser";
-import {ModalFormUploadFile} from "../../components/pricats/ModalFormUploadFile";
 import {PasswordChange} from "../../components/settings/profile/PasswordChange";
 import {ModalNotify} from "../../components/modal/ModalNotify";
-import {PricatsResponse} from "../../models/response/PricatsResponse";
-import PricatService from "../../services/PricatService";
 import UserService from "../../services/UserService";
-import {ChangePasswordRequest} from "../../models/request/ChangePasswordRequest";
 import {AxiosError} from "axios";
+import ParseDate from "../../utils/ParseDate";
+import {styleInput, styleLabelInput} from "../../data/styles";
 
 function ProfilePage() {
 
@@ -30,14 +28,13 @@ function ProfilePage() {
 
 
 
-
     useEffect(() => {
       setProfile(store?.user);
     }, []);
 
     useEffect(() => {
         if(isUpdatedProfile){
-           store.updateAuth();
+           store.updateAuth().then(() => setProfile(store?.user));
         }
         setIsUpdatedProfile(false);
     }, [isUpdatedProfile]);
@@ -45,7 +42,7 @@ function ProfilePage() {
     async function editProfile(){
         try {
             const response = await UserService.editProfile(profile);
-            setModalMsg("Данные профиля успешно изменены. Изменения вступят в силу в ближайшее время!");
+            setModalMsg("Данные профиля успешно изменены. Возможно потребуется повторная аутентификация.");
             setError('')
         } catch (e: AxiosError | any) {
             setModalMsg("Ошибка! Отредактируйте данные и попробуйте еще раз.")
@@ -69,8 +66,8 @@ function ProfilePage() {
         }
     }
 
-    const styleInput = "border rounded border-slate-400 px-2 text-sm h-[28px] w-96 outline-blue-700 focus-visible:outline-1  hover:border-blue-700 disabled:bg-gray-100 disabled:text-gray-500"
-    const styleLabelInput = "text-xs font-medium"
+    // const styleInput = "border rounded border-slate-400 px-2 text-sm  h-[28px] w-72 outline-blue-700 focus-visible:outline-1  hover:border-blue-700 disabled:bg-gray-100 disabled:text-gray-500"
+    // const styleLabelInput = "text-xs font-medium"
 
 
     return (
@@ -99,17 +96,15 @@ function ProfilePage() {
                         <div className="flex flex-col">
                             <span className={styleLabelInput}>GLN</span>
                             <input
-                                className={styleInput}
+                                className={styleInput + "w-72"}
                                 disabled={true}
                                 value={profile?.gln || ''}
                             />
                         </div>
-                    </div>
-                    <div className="flex flex-row justify-start gap-x-5 pt-4">
                         <div className="flex flex-col">
                             <span className={styleLabelInput}>Логин <span className="text-red-500 font-bold">*</span></span>
                             <input
-                                className={styleInput}
+                                className={styleInput + "w-72"}
                                 onChange={event => setProfile({...profile, username: event.target.value})}
                                 value={profile?.username || ''}
                             />
@@ -117,11 +112,63 @@ function ProfilePage() {
                     </div>
                     <div className="flex flex-row justify-start gap-x-5 pt-4">
                         <div className="flex flex-col">
-                            <span className={styleLabelInput}>Email</span>
+                            <span className={styleLabelInput}>Фамилия <span className="text-red-500 font-bold">*</span></span>
                             <input
-                                className={styleInput}
+                                className={styleInput + "w-72"}
+                                onChange={event => setProfile({...profile, lastName: event.target.value})}
+                                value={profile?.lastName || ''}
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className={styleLabelInput}>Имя <span className="text-red-500 font-bold">*</span></span>
+                            <input
+                                className={styleInput + "w-72"}
+                                onChange={event => setProfile({...profile, firstName: event.target.value})}
+                                value={profile?.firstName || ''}
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className={styleLabelInput}>Отчество</span>
+                            <input
+                                className={styleInput + "w-72"}
+                                onChange={event => setProfile({...profile, middleName: event.target.value})}
+                                value={profile?.middleName || ''}
+                            />
+                        </div>
+                    </div>
+                    <div className="flex flex-row justify-start gap-x-5 pt-4">
+                        <div className="flex flex-col">
+                            <span className={styleLabelInput}>Email <span className="text-red-500 font-bold">*</span></span>
+                            <input
+                                className={styleInput + "w-72"}
                                 onChange={event => setProfile({...profile, email: event.target.value})}
                                 value={profile?.email || ''}
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className={styleLabelInput}>Телефон</span>
+                            <input
+                                className={styleInput + "w-72"}
+                                onChange={event => setProfile({...profile, phone: event.target.value})}
+                                value={profile?.phone || ''}
+                            />
+                        </div>
+                    </div>
+                    <div className="flex flex-row justify-start gap-x-5 pt-4">
+                        <div className="flex flex-col">
+                            <span className={styleLabelInput}>Дата обновления профиля</span>
+                            <input
+                                className={styleInput + "w-72"}
+                                disabled={true}
+                                value={ParseDate.ParseStringDateToFormatYYYY_MM_dd_HH_mm_ss(profile?.profileUpdate) || ''}
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className={styleLabelInput}>Дата последней авторизации</span>
+                            <input
+                                className={styleInput + "w-72"}
+                                disabled={true}
+                                value={ParseDate.ParseStringDateToFormatYYYY_MM_dd_HH_mm_ss(profile?.lastLogin) || ''}
                             />
                         </div>
                     </div>

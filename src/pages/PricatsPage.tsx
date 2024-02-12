@@ -38,7 +38,7 @@ function PricatsPage() {
 
     const [pricatForSend, setPricatForSend] = useState<any>(null);
     function isFetching(bool: boolean) {
-        setFetching(bool); //поправить пагинацию
+        setFetching(bool);
     }
 
 
@@ -90,10 +90,8 @@ function PricatsPage() {
             setError('');
             setIsLoading(true);
             const response = await PricatService.getPricats(pricatNDE, pricatStatus, pricatDate, page)
-            if(replace){
-                // if(response.data.length === 0)
-                //     setIsMaxPage(true)
-                setPricats([...pricats, ...response.data]);
+            if(!replace){
+                response.data.length === 0 ? setIsMaxPage(true) : setPricats([...pricats, ...response.data])
             } else {
                 setPricats(response.data)
             }
@@ -106,17 +104,18 @@ function PricatsPage() {
     }
 
     async function fetchPricats(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
-        // setIsMaxPage(false);
+        setIsMaxPage(false);
+        setFetching(false);
         setCurrentPage(1);
-        await fetchPricatsByFilter(pricatNDE, pricatStatus, pricatDate, 1, false);
-
+        await fetchPricatsByFilter(pricatNDE, pricatStatus, pricatDate, 1, true);
     }
 
     async function fetchPricatsPaginated(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
         if(!isMaxPage){
-            await fetchPricatsByFilter(pricatNDE, pricatStatus, pricatDate, page+1, true)
-            setCurrentPage(prevState => prevState + 1)
-            setFetching(false); //пересмотреть значение на последней странице
+            await fetchPricatsByFilter(pricatNDE, pricatStatus, pricatDate, page+1, false).then(() => {
+                setFetching(false)
+                setCurrentPage(prevState => prevState + 1)
+            })
         }
     }
 
@@ -167,8 +166,7 @@ function PricatsPage() {
                     </div>
 
                     <FilterPanelPricat fetchPricats={fetchPricats} fetchPricatsPaginated={fetchPricatsPaginated}
-                                 fetching={fetching} currentPage={currentPage} setFetching={isFetching}
-                                       updateFlag={updateFlag} setIsMaxPage={setIsMaxPage}/>
+                                 fetching={fetching} currentPage={currentPage} updateFlag={updateFlag} />
 
 
                     {error == '' && <PriceListTable pricats={pricats} isLoading={isLoading} setFetching={isFetching} sendPricat={pressButSend}/>}

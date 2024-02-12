@@ -15,7 +15,11 @@ export default class UserService {
         return $api.put<PricatsResponse[]>(`${API_URL}/api/user/profile/edit`,
             {
                 "username": profile.username,
-                "email": profile.email
+                "email": profile.email,
+                "lastName": profile.lastName,
+                "firstName": profile.firstName,
+                "middleName": profile.middleName,
+                "phone": profile.phone
             });
     }
 }

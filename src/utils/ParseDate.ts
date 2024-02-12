@@ -1,47 +1,92 @@
+export default class ParseDate {
+    static ParseDateToFormatYYYY_MM_dd(date: Date){
+        return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
+    }
 
-export function ParseDateToFormatYYYY_MM_dd(date: Date){
-    return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
-}
+    static ParseDateToFormatYYYY_MM_dd_HH_mm_ss(date: Date){
+        return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
+            +" "+ date.getHours().toString().padStart(2, '0') +":"+ date.getMinutes().toString().padStart(2, '0') +":"+ date.getSeconds().toString().padStart(2, '0')
+    }
 
-export function ParseDateToFormatYYYY_MM_dd_HH_mm_ss(date: Date){
-    return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
-        +" "+ date.getHours().toString().padStart(2, '0') +":"+ date.getMinutes().toString().padStart(2, '0') +":"+ date.getSeconds().toString().padStart(2, '0')
-}
+    static ParseStringDateToFormatYYYY_MM_dd_HH_mm_ss(str: string){
+        return ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(str))
+    }
 
-export function ParseStringDateToFormatYYYY_MM_dd_HH_mm_ss(str: string){
-    return ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(str))
-}
+    static ParseDateToFormatYYYYMMddTHHmmsstttZ(date: Date){
+        return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
+            +"T"+ date.getHours().toString().padStart(2, '0') +":"+ date.getMinutes().toString().padStart(2, '0') +":"+ date.getSeconds().toString().padStart(2, '0')
+            +"."+ date.getMilliseconds().toString().padStart(3, '0') +"Z"
 
-export function ParseDateToFormatYYYYMMddTHHmmsstttZ(date: Date){
-    return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
-        +"T"+ date.getHours().toString().padStart(2, '0') +":"+ date.getMinutes().toString().padStart(2, '0') +":"+ date.getSeconds().toString().padStart(2, '0')
-        +"."+ date.getMilliseconds().toString().padStart(3, '0') +"Z"
+    }
 
-}
-export function ParseStringDateToFormatYYYYMMddTHHmmsstttZ(str: string){
-    return ParseDateToFormatYYYYMMddTHHmmsstttZ(new Date(str))
-}
+    static ParseStringDateToFormatYYYYMMddTHHmmsstttZ(str: string){
+        return ParseDate.ParseDateToFormatYYYYMMddTHHmmsstttZ(new Date(str))
+    }
 
-export function parseXMLToDateToFormatYYYY_MM_dd(str: string){
-    let result = str.substring(0,4) + "-" + str.substring(4,6) + "-" + str.substring(6,8);
-    return result
-}
+    static parseXMLToDateToFormatYYYY_MM_dd(str: string){
+        let result = str.substring(0,4) + "-" + str.substring(4,6) + "-" + str.substring(6,8);
+        return result
+    }
 
-export function setEndOfDay(date: Date){
-    date.setHours(23)
-    date.setMinutes(59)
-    date.setSeconds(59)
-    date.setMilliseconds(999)
-    return date;
-}
+    static setEndOfDay(date: Date){
+        date.setHours(23)
+        date.setMinutes(59)
+        date.setSeconds(59)
+        date.setMilliseconds(999)
+        return date;
+    }
 
-export function setStartOfDay(date: Date){
-    date.setHours(0)
-    date.setMinutes(0)
-    date.setSeconds(0)
-    date.setMilliseconds(0)
-    return date;
+    static setStartOfDay(date: Date){
+        date.setHours(0)
+        date.setMinutes(0)
+        date.setSeconds(0)
+        date.setMilliseconds(0)
+        return date;
+    }
 }
+// export function ParseDateToFormatYYYY_MM_dd(date: Date){
+//     return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
+// }
+//
+// export function ParseDateToFormatYYYY_MM_dd_HH_mm_ss(date: Date){
+//     return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
+//         +" "+ date.getHours().toString().padStart(2, '0') +":"+ date.getMinutes().toString().padStart(2, '0') +":"+ date.getSeconds().toString().padStart(2, '0')
+// }
+//
+// export function ParseStringDateToFormatYYYY_MM_dd_HH_mm_ss(str: string){
+//     return ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(str))
+// }
+//
+// export function ParseDateToFormatYYYYMMddTHHmmsstttZ(date: Date){
+//     return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
+//         +"T"+ date.getHours().toString().padStart(2, '0') +":"+ date.getMinutes().toString().padStart(2, '0') +":"+ date.getSeconds().toString().padStart(2, '0')
+//         +"."+ date.getMilliseconds().toString().padStart(3, '0') +"Z"
+//
+// }
+// export function ParseStringDateToFormatYYYYMMddTHHmmsstttZ(str: string){
+//     return ParseDateToFormatYYYYMMddTHHmmsstttZ(new Date(str))
+// }
+//
+// export function parseXMLToDateToFormatYYYY_MM_dd(str: string){
+//     let result = str.substring(0,4) + "-" + str.substring(4,6) + "-" + str.substring(6,8);
+//     return result
+// }
+//
+// export function setEndOfDay(date: Date){
+//     date.setHours(23)
+//     date.setMinutes(59)
+//     date.setSeconds(59)
+//     date.setMilliseconds(999)
+//     return date;
+// }
+//
+// export function setStartOfDay(date: Date){
+//     date.setHours(0)
+//     date.setMinutes(0)
+//     date.setSeconds(0)
+//     date.setMilliseconds(0)
+//     return date;
+// }
 
 // interface Date {
 //     format(formatString: string): string;

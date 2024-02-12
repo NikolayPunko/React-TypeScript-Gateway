@@ -10,10 +10,7 @@ interface FilterPanelPricatProps {
     fetchPricatsPaginated: (pricatNDE:any, pricatStatus:any, pricatDate:any, page:any) => void
     fetching: boolean
     currentPage: any
-    setFetching: (bool: boolean) => void
     updateFlag: boolean
-    setIsMaxPage: (bool: boolean) => void
-
 }
 
 export function FilterPanelPricat(props: FilterPanelPricatProps) {
@@ -37,27 +34,14 @@ export function FilterPanelPricat(props: FilterPanelPricatProps) {
 
 
     useEffect(() => {
-        // props.setIsMaxPage(false);
-        props.fetchPricats(
-            pricatNDE,
-            pricatStatus,
-            pricatDate,
-            1
-        );
-        props.setFetching(false);
+        props.fetchPricats(pricatNDE, pricatStatus, pricatDate, 1);
     }, [pricatNDE, pricatStatus, pricatDate, props.updateFlag]);
 
 
     useEffect(() => {
         if(props.fetching){
-            props.fetchPricatsPaginated(
-                pricatNDE,
-                pricatStatus,
-                pricatDate,
-                props.currentPage
-            )
+            props.fetchPricatsPaginated(pricatNDE, pricatStatus, pricatDate, props.currentPage)
         }
-        // props.setFetching(false);
     }, [props.fetching]);
 
     function resetFilter() {
@@ -68,7 +52,6 @@ export function FilterPanelPricat(props: FilterPanelPricatProps) {
             endDate: new Date()
         });
     }
-
 
 
     useEffect(() => {
