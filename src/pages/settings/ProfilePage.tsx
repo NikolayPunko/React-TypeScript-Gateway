@@ -29,7 +29,8 @@ function ProfilePage() {
 
 
     useEffect(() => {
-      setProfile(store?.user);
+        store.updateAuth().then(() => setProfile(store?.user)); //обновить данные профиля при загрузке страницы
+      // setProfile(store?.user);
     }, []);
 
     useEffect(() => {
@@ -65,9 +66,6 @@ function ProfilePage() {
             setIsUpdatedProfile(true)
         }
     }
-
-    // const styleInput = "border rounded border-slate-400 px-2 text-sm  h-[28px] w-72 outline-blue-700 focus-visible:outline-1  hover:border-blue-700 disabled:bg-gray-100 disabled:text-gray-500"
-    // const styleLabelInput = "text-xs font-medium"
 
 
     return (
