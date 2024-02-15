@@ -10,6 +10,7 @@ import UserService from "../../services/UserService";
 import {AxiosError} from "axios";
 import ParseDate from "../../utils/ParseDate";
 import {styleInput, styleLabelInput} from "../../data/styles";
+import {ModalSelect} from "../../components/modal/ModalSelect";
 
 function ProfilePage() {
 
@@ -23,6 +24,8 @@ function ProfilePage() {
 
     const [isModalResultEditProfile, setIsModalResultEditProfile] = useState(false);
     const [modalMsg, setModalMsg] = useState('');
+
+    const [isModalSaveChanges, setIsModalSaveChanges] = useState<boolean>(false);
 
     const [isUpdatedProfile, setIsUpdatedProfile] = useState(false);
 
@@ -57,6 +60,10 @@ function ProfilePage() {
         setIsModalPassword(!isModalPassword)
     }
 
+    function showModalSaveChanges(){
+        setIsModalSaveChanges(!isModalSaveChanges)
+    }
+
     function closeModalResultEditProfile(){
         setIsModalResultEditProfile(!isModalResultEditProfile)
         if(error == '') {
@@ -84,7 +91,7 @@ function ProfilePage() {
                         </button>
                         <button
                             className="px-2 h-7 rounded text-xs font-medium shadow-sm border border-slate-400 bg-blue-700 text-white hover:bg-blue-800"
-                            onClick={() => editProfile()}>Сохранить
+                            onClick={() => showModalSaveChanges()}>Сохранить
                         </button>
                     </div>
                 </div>
@@ -176,6 +183,7 @@ function ProfilePage() {
 
                 {isModalResultEditProfile && <ModalNotify title={"Результат операции"} message={modalMsg} onClose={closeModalResultEditProfile}/>}
 
+                {isModalSaveChanges && <ModalSelect title={"Редактирование профиля"} message={"Вы уверены что хотите изменить данные профиля?"} onClose={showModalSaveChanges} onAgreement={() => {editProfile().finally(showModalSaveChanges)}}/>}
             </div>
         </>
     )
