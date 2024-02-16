@@ -45,7 +45,7 @@ export function Navigation() {
                     <div ref={container}>
                         <div className="flex flex-row items-center" >
                             <button disabled={false} onClick={() => setDropdownSettings(prev => !prev)}>Настройки</button>
-                            <div className="pl-1 pt-1">
+                            <div className="pl-1 pt-1" onClick={() => setDropdownSettings(prev => !prev)}>
                                 {dropdownSettings && arrowDown}
                                 {!dropdownSettings && arrowUp}
                             </div>
@@ -54,11 +54,11 @@ export function Navigation() {
                         {dropdownSettings &&
                             <div className="absolute z-50 text-xs py-3 mt-2 border-1 rounded shadow bg-white text-black">
                                 <ul className="">
-                                    <li className="px-3 py-1 hover:bg-blue-700 hover:text-white ">Моя организация</li>
+                                    <li className="px-3 py-1 hover:bg-gray-200 hover:text-white ">Моя организация</li>
                                     <li className="px-3 py-1 hover:bg-blue-700 hover:text-white " onClick={() => navigate("/settings/profile")}>Мой профиль</li>
-                                    <li className="px-3 py-1 hover:bg-blue-700 hover:text-white ">Контрагенты</li>
-                                    <li className="px-3 py-1 hover:bg-blue-700 hover:text-white ">Управление пользователями</li>
-                                    <li className="px-3 py-1 hover:bg-blue-700 hover:text-white ">Уведомления</li>
+                                    <li className="px-3 py-1 hover:bg-gray-200 hover:text-white ">Контрагенты</li>
+                                    <li className="px-3 py-1 hover:bg-gray-200 hover:text-white ">Управление пользователями</li>
+                                    <li className="px-3 py-1 hover:bg-gray-200 hover:text-white ">Уведомления</li>
                                 </ul>
                             </div>
                         }
