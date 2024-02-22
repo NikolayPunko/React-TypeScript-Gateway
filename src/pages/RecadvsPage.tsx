@@ -1,27 +1,23 @@
-import React, {useEffect, useState} from 'react'
-import {LeftNavigation} from "../components/leftNavigation/LeftNavigation";
-import {Navigation} from "../components/Navigation";
-import {AxiosError} from "axios";
-import {ModalError} from "../components/error/ModalError";
 import {observer} from "mobx-react-lite";
-import {useNavigate} from "react-router-dom";
-import PriceListTable from "../components/pricats/PriceListTable";
-import PricatService from "../services/PricatService";
-import {FilterPanelPricat} from "../components/pricat/FilterPanelPricat";
+import {ModalError} from "../components/error/ModalError";
+import {Navigation} from "../components/Navigation";
+import {LeftNavigation} from "../components/leftNavigation/LeftNavigation";
+import React, {useState} from "react";
+import {FilterPanelRecadv} from "../components/recadv/FilterPanelRecadv";
+import {AxiosError} from "axios";
+import RecadvTable from "../components/recadv/RecadvTable";
+import RecadvService from "../services/RecadvService";
 import {ModalFormUploadFile} from "../components/modal/ModalFormUploadFile";
 import {ModalNotify} from "../components/modal/ModalNotify";
-import {PricatsResponse} from "../models/response/PricatsResponse";
 import {ModalSelect} from "../components/modal/ModalSelect";
+import {RecadvsResponse} from "../models/response/RecadvsResponse";
 
 
-function PricatsPage() {
+function RecadvsPage() {
 
-    const navigate = useNavigate();
-
-    const [pricats, setPricats] = useState<any>([]);
+    const [recadvs, setRecadvs] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
-
 
     const [currentPage, setCurrentPage] = useState(1);
     const [fetching, setFetching] = useState(false);
@@ -29,23 +25,23 @@ function PricatsPage() {
 
 
     const [isModalImport, setIsModalImport] = useState(false);
-
     const [isModalNotify, setIsModalNotif] = useState(false);
     const [isModalSelect, setIsModalSelect] = useState(false);
     const [modalMsg, setModalMsg] = useState('');
 
     const [updateFlag, setUpdateFlag] = useState<boolean>(false);
 
-    const [pricatForSend, setPricatForSend] = useState<any>(null);
+    const [recadvForSend, setRecadvForSend] = useState<any>(null);
+
+
     function isFetching(bool: boolean) {
         setFetching(bool);
     }
 
-
     async function importFile(file: any){
         try {
             setIsLoading(true);
-            const response = await PricatService.importPricat(file); //response id
+            const response = await RecadvService.importRecadv(file); //response id
             setModalMsg("Файл успешно импортирован!");
             setUpdateFlag(!updateFlag);
         } catch (e: unknown) {
@@ -57,10 +53,10 @@ function PricatsPage() {
         }
     }
 
-    async function sendPricat(pricat: PricatsResponse){ //переделать отправку
+    async function sendRecadv(recadv: RecadvsResponse){
         try {
             setIsLoading(true);
-            const response = await PricatService.sendPricat(pricat.documentId);
+            const response = await RecadvService.sendRecadv(recadv.documentId);
             setModalMsg("Документ успешно отправлен!");
             setUpdateFlag(!updateFlag);
         } catch (e: unknown) {
@@ -72,28 +68,28 @@ function PricatsPage() {
 
     }
 
-    function pressButSend(pricat: PricatsResponse){
-        setPricatForSend(pricat);
+    function pressButSend(recadv: RecadvsResponse){
+        setRecadvForSend(recadv);
         setModalMsg("Вы уверены что хотите отправить документ?");
         showModalSelect();
     }
 
     async function agreeToSend(){
         showModalSelect();
-        await sendPricat(pricatForSend);
-        setPricatForSend(null);
+        await sendRecadv(recadvForSend);
+        setRecadvForSend(null);
     }
 
 
-    async function fetchPricatsByFilter(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any, replace: boolean) {
+    async function fetchRecadvsByFilter(NDE: any, Status:any, Date: any, page: any, replace: boolean) {
         try {
             setError('');
             setIsLoading(true);
-            const response = await PricatService.getPricats(pricatNDE, pricatStatus, pricatDate, page)
+            const response = await RecadvService.getRecadvs(NDE, Status, Date, page)
             if(!replace){
-                response.data.length === 0 ? setIsMaxPage(true) : setPricats([...pricats, ...response.data])
+                response.data.length === 0 ? setIsMaxPage(true) : setRecadvs([...recadvs, ...response.data])
             } else {
-                setPricats(response.data)
+                setRecadvs(response.data)
             }
             setIsLoading(false);
         } catch (e: unknown) {
@@ -103,16 +99,16 @@ function PricatsPage() {
         }
     }
 
-    async function fetchPricats(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
+    async function fetchRecadvs(NDE: any, Status:any, Date: any, page: any) {
         setIsMaxPage(false);
         setFetching(false);
         setCurrentPage(1);
-        await fetchPricatsByFilter(pricatNDE, pricatStatus, pricatDate, 1, true);
+        await fetchRecadvsByFilter(NDE, Status, Date, 1, true);
     }
 
-    async function fetchPricatsPaginated(pricatNDE: any, pricatStatus:any, pricatDate: any, page: any) {
+    async function fetchRecadvsPaginated(NDE: any, Status:any, Date: any, page: any) {
         if(!isMaxPage){
-            await fetchPricatsByFilter(pricatNDE, pricatStatus, pricatDate, page+1, false).then(() => {
+            await fetchRecadvsByFilter(NDE, Status, Date, page+1, false).then(() => {
                 setFetching(false)
                 setCurrentPage(prevState => prevState + 1)
             })
@@ -131,6 +127,7 @@ function PricatsPage() {
         setIsModalSelect(!isModalSelect)
     }
 
+
     return (
         <>
             {error != '' && <h2><ModalError title={error}/></h2>}
@@ -143,13 +140,11 @@ function PricatsPage() {
                 <div className="flex flex-col w-full">
                     <div className="flex flex-row items-center w-full py-3 border-b-2 bg-gray-50">
                         <div className="inline-flex w-1/2">
-                            <span className="font-bold px-5 text-xl">Прайс-листы</span>
+                            <span className="font-bold px-5 text-xl">Акты расхождений</span>
                         </div>
                         <div className="inline-flex w-1/2 justify-end">
 
-                            {/*<span onClick={() => {*/}
-                            {/*    console.log(fetching)*/}
-                            {/*}}>тест</span>*/}
+
                             <button
                                 className="px-2 mx-5 h-7 w-20 rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200 inline-flex items-center"
                                 onClick={() => showModalImport()}>
@@ -165,11 +160,12 @@ function PricatsPage() {
                         </div>
                     </div>
 
-                    <FilterPanelPricat fetchPricats={fetchPricats} fetchPricatsPaginated={fetchPricatsPaginated}
-                                 fetching={fetching} currentPage={currentPage} updateFlag={updateFlag} />
+                    <FilterPanelRecadv fetchRecadvs={fetchRecadvs} fetchRecadvsPaginated={fetchRecadvsPaginated}
+                                       fetching={fetching} currentPage={currentPage} updateFlag={updateFlag} />
 
 
-                    {error == '' && <PriceListTable pricats={pricats} isLoading={isLoading} setFetching={isFetching} sendPricat={pressButSend}/>}
+
+                    {error == '' && <RecadvTable recadvs={recadvs} isLoading={isLoading} setFetching={isFetching} sendRecadv={pressButSend}/>}
 
 
                 </div>
@@ -182,9 +178,7 @@ function PricatsPage() {
 
             {isModalSelect && <ModalSelect title={"Отправка документа"} message={modalMsg} onClose={showModalSelect} onAgreement={agreeToSend}/>}
         </>
-
-
     )
 }
 
-export default observer(PricatsPage)
+export default observer(RecadvsPage)

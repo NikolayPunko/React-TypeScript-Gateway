@@ -10,6 +10,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import PricatsPage from "./pages/PricatsPage";
 import PricatPage from "./pages/PricatPage";
 import ProfilePage from "./pages/settings/ProfilePage";
+import RecadvsPage from "./pages/RecadvsPage";
+import NotFound from "./pages/NotFound";
 
 
 
@@ -42,12 +44,14 @@ function App() {
                         <Route path="/pricats" element={<PricatsPage/>} />
                         <Route path="/pricats/:id" element={<PricatPage/>} />
 
+                        <Route path="/recadvs" element={<RecadvsPage/>} />
+
                         <Route path="/settings/profile" element={<ProfilePage/>} />
                     </Route>
 
 
                     <Route path="/login" element={<Authorization/>}/>
-                    <Route path="*" element={<h2>Ресурс не найден</h2>}/>
+                    <Route path="*" element={<NotFound/>}/>
                 </Routes>
 
             </>
