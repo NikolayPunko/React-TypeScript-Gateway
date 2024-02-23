@@ -12,6 +12,7 @@ import PricatPage from "./pages/PricatPage";
 import ProfilePage from "./pages/settings/ProfilePage";
 import RecadvsPage from "./pages/RecadvsPage";
 import NotFound from "./pages/NotFound";
+import RecadvPage from "./pages/RecadvPage";
 
 
 
@@ -45,6 +46,7 @@ function App() {
                         <Route path="/pricats/:id" element={<PricatPage/>} />
 
                         <Route path="/recadvs" element={<RecadvsPage/>} />
+                        <Route path="/recadvs/:id" element={<RecadvPage/>} />
 
                         <Route path="/settings/profile" element={<ProfilePage/>} />
                     </Route>

@@ -1,21 +1,23 @@
 import React from "react";
 
 
-interface RowTablePriceListProps {
+interface RowTableRecadvProps {
     product: any
 }
-export function RowTablePricat(props: RowTablePriceListProps) {
+export function RowTableRecadv(props: RowTableRecadvProps) {
 
     function findName(){
         let result = '';
         if (props.product.IMD?.length){
             for (let i = 0; i < props.product.IMD?.length; i++) {
-                if(props.product.IMD[i].E7077 == 'F')
+                if(props.product.IMD[i].E7077 == 'F'){
                     result = props.product.IMD[i].C273.E7008
+                }
             }
         } else {
-            if(props.product.IMD.E7077 == 'F')
+            if(props.product.IMD.E7077 == 'F'){
                 result = props.product.IMD.C273.E7008
+            }
         }
         return result;
     }
@@ -37,16 +39,19 @@ export function RowTablePricat(props: RowTablePriceListProps) {
                 <td className="py-3 text-xs" style={{width: '10%'}}>{props.product.LIN?.C212?.E7140}</td>
                 <td className="text-xs" style={{width: '28%'}}>{findName()}</td>
 
-                <td className="text-xs" style={{width: '8%'}}>{props.product.MEA?.C174?.E6314}</td>
 
-                <td className="text-xs" style={{width: '8%'}}>{props.product.SG40?.PRI?.C509?.E5118}</td>
-                {/*<td className="text-xs" style={{width: '8%'}}>{props.product.SG38?.TAX?.C243?.E5278}</td>*/}
-                <td className="text-xs" style={{width: '8%'}}>{props.product.DTM?.C507?.E2380}</td>
+                <td className="text-xs" style={{width: '8%'}}></td>
+                <td className="text-xs" style={{width: '8%'}}></td>
+                <td className="text-xs" style={{width: '8%'}}></td>
+                <td className="text-xs" style={{width: '8%'}}></td>
+                <td className="text-xs" style={{width: '8%'}}></td>
 
-                <td className="text-xs" style={{width: '8%'}}>{props.product.QTY?.C186?.E6060}</td>
-                <td className="text-xs" style={{width: '6%'}}>{findPackageSize("LN")}</td>
-                <td className="text-xs" style={{width: '6%'}}>{findPackageSize("WD")}</td>
-                <td className="text-xs" style={{width: '6%'}}>{findPackageSize("HT")}</td>
+                <td className="text-xs" style={{width: '5%'}}>7</td>
+                <td className="text-xs" style={{width: '5%'}}>9</td>
+                <td className="text-xs" style={{width: '5%'}}>3</td>
+                <td className="text-xs" style={{width: '5%'}}>25</td>
+                <td className="text-xs" style={{width: '5%'}}>3</td>
+                <td className="text-xs" style={{width: '5%'}}>25</td>
                 <td className="text-xs" style={{width: '8%'}}>{props.product.PIA?.C212?.E7140}</td>
             </tr>
             {/*<tr className="table w-full h-auto table-fixed border-b-2">*/}
