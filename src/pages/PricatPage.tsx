@@ -154,7 +154,7 @@ function PricatPage() {
 
                             <table>
                                 <thead>
-                                <tr className="border-b table w-full table-fixed align-top" style={{width: 'calc( 100% - 1.1em )'}}>
+                                <tr className="border-b table w-full table-fixed align-top" style={{width: 'calc( 100% - 0.5em )'}}>
                                     <th className="px-2 text-xs font-medium text-left" style={{width: '4%'}}>№</th>
 
                                     <th className=" text-xs font-medium text-left " style={{width: '10%'}}>GTIN</th>
@@ -173,7 +173,7 @@ function PricatPage() {
 
                                 </thead>
 
-                                <tbody className="block overflow-y-scroll bg-white" style={{maxHeight: 'calc( 100vh - 212px )'}}>
+                                <tbody className="block overflow-y-scroll bg-white" style={{maxHeight: 'calc( 100vh - 135px )'}}>
 
                                 {xmlObj.PRICAT?.SG17?.SG36?.map((product, index) => <RowTablePricat product={product} key={index}/>)}
 

@@ -37,28 +37,24 @@ export function RowTableRecadv(props: RowTableRecadvProps) {
             <tr className="table w-full h-auto table-fixed hover:bg-gray-200 border-b-2">
                 <td className="px-2 text-xs" style={{width: '4%'}}>{props.product.LIN?.E1082}</td>
                 <td className="py-3 text-xs" style={{width: '10%'}}>{props.product.LIN?.C212?.E7140}</td>
-                <td className="text-xs" style={{width: '28%'}}>{findName()}</td>
+                <td className="text-xs pr-1" style={{width: '25%'}}>{findName()}</td>
 
 
-                <td className="text-xs" style={{width: '8%'}}></td>
-                <td className="text-xs" style={{width: '8%'}}></td>
-                <td className="text-xs" style={{width: '8%'}}></td>
-                <td className="text-xs" style={{width: '8%'}}></td>
-                <td className="text-xs" style={{width: '8%'}}></td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
 
-                <td className="text-xs" style={{width: '5%'}}>7</td>
-                <td className="text-xs" style={{width: '5%'}}>9</td>
-                <td className="text-xs" style={{width: '5%'}}>3</td>
-                <td className="text-xs" style={{width: '5%'}}>25</td>
-                <td className="text-xs" style={{width: '5%'}}>3</td>
-                <td className="text-xs" style={{width: '5%'}}>25</td>
-                <td className="text-xs" style={{width: '8%'}}>{props.product.PIA?.C212?.E7140}</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '6%'}}>{props.product.PIA?.C212?.E7140}</td>
             </tr>
-            {/*<tr className="table w-full h-auto table-fixed border-b-2">*/}
-            {/*    <td className="bg-gray-100 text-xs py-1 px-1">*/}
-            {/*        Код товара, присвоенный покупателем: <span className="">{props.product.PIA?.C212?.E7140}</span>*/}
-            {/*    </td>*/}
-            {/*</tr>*/}
+
         </>
     )
 }
