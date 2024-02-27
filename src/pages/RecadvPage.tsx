@@ -186,7 +186,7 @@ function RecadvPage() {
 
                                 <tbody className="block overflow-y-scroll bg-white" style={{maxHeight: 'calc( 100vh - 135px )'}}>
 
-                                {xmlObj.RECADV?.SG16?.map((product, index) => <RowTableRecadv product={product} key={index}/>)}
+                                {xmlObj.RECADV?.SG16?.SG22?.map((product, index) => <RowTableRecadv product={product} key={index}/>)}
 
                                 </tbody>
                             </table>

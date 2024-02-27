@@ -22,11 +22,27 @@ export function RowTableRecadv(props: RowTableRecadvProps) {
         return result;
     }
 
-    function findPackageSize(str: string){
+    // function findPackageSize(str: string){
+    //     let result = '';
+    //     for (let i = 0; i < props.product.SG47?.MEA?.length; i++) {
+    //         if(props.product.SG47.MEA[i].C502.E6313 == str){
+    //             result = props.product.SG47.MEA[i].C174.E6314
+    //         }
+    //     }
+    //     return result;
+    // }
+
+    function findQuantity(str: string){
         let result = '';
-        for (let i = 0; i < props.product.SG47?.MEA?.length; i++) {
-            if(props.product.SG47.MEA[i].C502.E6313 == str){
-                result = props.product.SG47.MEA[i].C174.E6314
+        if (props.product.QTY?.length){
+            for (let i = 0; i < props.product.QTY?.length; i++) {
+                if(props.product.QTY[i].C186.E6063 == str){
+                    result = props.product.QTY[i].C186.E6060
+                }
+            }
+        } else {
+            if(props.product.QTY?.C186.E6063 == str){
+                result = props.product.QTY.C186.E6060
             }
         }
         return result;
@@ -46,8 +62,8 @@ export function RowTableRecadv(props: RowTableRecadvProps) {
                 <td className="text-xs" style={{width: '5%'}}>-</td>
                 <td className="text-xs" style={{width: '5%'}}>-</td>
 
-                <td className="text-xs" style={{width: '5%'}}>-</td>
-                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>{findQuantity('21')}</td>
+                <td className="text-xs" style={{width: '5%'}}>{findQuantity('48')}</td>
                 <td className="text-xs" style={{width: '5%'}}>-</td>
                 <td className="text-xs" style={{width: '5%'}}>-</td>
                 <td className="text-xs" style={{width: '5%'}}>-</td>
