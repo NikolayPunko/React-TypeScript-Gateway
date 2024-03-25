@@ -7,7 +7,7 @@ import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router-dom";
 import PriceListTable from "../components/pricats/PriceListTable";
 import PricatService from "../services/PricatService";
-import {FilterPanelPricat} from "../components/pricat/FilterPanelPricat";
+import {FilterPanelPricat} from "../components/pricats/FilterPanelPricat";
 import {ModalFormUploadFile} from "../components/modal/ModalFormUploadFile";
 import {ModalNotify} from "../components/modal/ModalNotify";
 import {PricatsResponse} from "../models/response/PricatsResponse";

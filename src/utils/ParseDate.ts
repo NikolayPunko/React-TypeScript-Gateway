@@ -28,6 +28,13 @@ export default class ParseDate {
         return result
     }
 
+    static separateTwoDatesAndParse(str: string){
+        let result = str.split("-")
+        result[0] = ParseDate.parseXMLToDateToFormatYYYY_MM_dd(result[0])
+        result[1] = ParseDate.parseXMLToDateToFormatYYYY_MM_dd(result[1])
+        return result;
+    }
+
     static setEndOfDay(date: Date){
         date.setHours(23)
         date.setMinutes(59)
