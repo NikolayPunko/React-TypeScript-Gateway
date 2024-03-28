@@ -234,7 +234,7 @@ function PricatPage() {
                                         </thead>
 
                                         <tbody className="block overflow-y-scroll bg-white"
-                                               style={{maxHeight: 'calc( 100vh - 135px )'}}>
+                                               style={{maxHeight: 'calc( 55vh)'}}>
 
                                         {xmlObj.PRICAT?.SG17?.SG36?.map((product, index) => <RowTablePricat
                                             selectItem={selectItem} index={index} product={product}
@@ -270,7 +270,7 @@ function PricatPage() {
                                         </thead>
 
                                         <tbody className="block overflow-y-scroll bg-white"
-                                               style={{maxHeight: 'calc( 100vh - 535px )'}}>
+                                               style={{maxHeight: 'calc( 25vh)'}}>
 
                                         {xmlObj.PRICAT?.SG17?.SG36[activeItem]?.SG52?.map((item, index) =>
                                             <RowTableShops item={item} index={index} key={index}/>)}
