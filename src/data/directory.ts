@@ -4,6 +4,8 @@ export const userDirectory = [
     {gln: '4810268900006', label: 'OAO "Савушкин продукт"'},
     {gln: '4819003720008', label: 'ООО "Санта Ритейл"'},
 
+    {gln: '2948845999999', label: '"Тестовый партнер для Савушкин Продукт"'},
+
 ]
 
 export function findLabelByGln(gln: any){

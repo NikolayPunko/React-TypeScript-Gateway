@@ -9,6 +9,7 @@ import {AxiosError} from "axios/index";
 import RecadvService from "../services/RecadvService";
 import XMLViewer from "react-xml-viewer";
 import {RowTableRecadv} from "../components/recadv/RowTableRecadv";
+import {RowTableRecadvNew} from "../components/recadv/RowTableRecadvNew";
 
 
 function RecadvPage() {
@@ -20,13 +21,19 @@ function RecadvPage() {
     const [error, setError] = useState('');
     const [xml, setXml] = useState('');
     const [xmlObj, setXmlObj] = useState<any>({});
+    const [products, setProducts] = useState<any>([]);
 
     const [xmlPage, setXmlPage] = useState<boolean>(false);
 
     const propertyStyle = "flex flex-row items-center py-1 text-xs font-medium"
 
+    //const [fields, setFields] = React.useState<any>({numbMsg:'', date:'', sender:'', receiver:'' });
+    const [numbMsg, setNumbMsg] = React.useState<any>('');
+    const [date, setDate] = React.useState<any>('');
+    const [sender, setSender] = React.useState<any>('');
+    const [receiver, setReceiver] = React.useState<any>('');
 
-    async function fetchOrder() {
+    async function fetchRecadv() {
         try {
             const ID = Number(params.id);
 
@@ -44,9 +51,31 @@ function RecadvPage() {
         }
     }
 
+    function parseFields(){
+
+        if(xmlObj.RECADV?.BGM){
+            setNumbMsg(xmlObj.RECADV?.BGM?.C106?.E1004)
+            setDate(xmlObj.RECADV?.DTM?.C507?.E2380)
+            setSender(findBYOrSU("SU"))
+            setReceiver(findBYOrSU("BY"))
+        }
+
+        if(xmlObj.BLRADF?.Actdif){
+            setNumbMsg(xmlObj.BLRADF?.Actdif.ID)
+            setDate(xmlObj.BLRADF?.Actdif.ActDifDate)
+            setSender(xmlObj.BLRADF?.Actdif.Shipper.GLN)
+            setReceiver(xmlObj.BLRADF?.Actdif.Receiver.GLN)
+            setProducts(xmlObj.BLRADF?.Actdif?.LineItem)
+        }
+    }
+
     useEffect(() => {
-        fetchOrder();
+        fetchRecadv();
     }, []);
+
+    useEffect(() => {
+        parseFields();
+    }, [xmlObj]);
 
 
 
@@ -91,12 +120,12 @@ function RecadvPage() {
 
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">Номер сообщения:</div>
-                                    <div className="w-1/2 px-1">{xmlObj.RECADV?.BGM?.C106?.E1004}</div>
+                                    <div className="w-1/2 px-1">{numbMsg}</div>
                                 </div>
 
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">Дата:</div>
-                                    <div className="w-1/2 px-1">{ParseDate.parseXMLToDateToFormatYYYY_MM_dd(String(xmlObj.RECADV?.DTM?.C507?.E2380))}</div>
+                                    <div className="w-1/2 px-1">{ParseDate.parseXMLToDateToFormatYYYY_MM_dd(String(date))}</div>
                                 </div>
 
                             </div>
@@ -105,11 +134,11 @@ function RecadvPage() {
                                 <span className="font-bold pb-1">Покупатель</span>
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">Наименование:</div>
-                                    <div className="w-1/2 px-1">{findLabelByGln(findBYOrSU("BY"))}</div>
+                                    <div className="w-1/2 px-1">{findLabelByGln(receiver)}</div>
                                 </div>
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">GLN:</div>
-                                    <div className="w-1/2 px-1">{findBYOrSU("BY")}</div>
+                                    <div className="w-1/2 px-1">{receiver}</div>
                                 </div>
                             </div>
 
@@ -117,11 +146,11 @@ function RecadvPage() {
                                 <span className="font-bold pb-1">Поставщик</span>
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">Наименование:</div>
-                                    <div className="w-1/2 px-1">{findLabelByGln(findBYOrSU("SU"))}</div>
+                                    <div className="w-1/2 px-1">{findLabelByGln(sender)}</div>
                                 </div>
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">GLN:</div>
-                                    <div className="w-1/2 px-1">{findBYOrSU("SU")}</div>
+                                    <div className="w-1/2 px-1">{sender}</div>
                                 </div>
                             </div>
 
@@ -187,6 +216,15 @@ function RecadvPage() {
                                 <tbody className="block overflow-y-scroll bg-white" style={{maxHeight: 'calc( 100vh - 135px )'}}>
 
                                 {xmlObj.RECADV?.SG16?.SG22?.map((product, index) => <RowTableRecadv product={product} key={index}/>)}
+
+
+                                {products.length > 1 && xmlObj.BLRADF?.Actdif
+                                    && xmlObj.BLRADF?.Actdif?.LineItem?.map((product, index) => <RowTableRecadvNew product={product} key={index}/>)}
+
+                                {products.length == undefined && xmlObj.BLRADF?.Actdif
+                                    && <RowTableRecadvNew product={xmlObj.BLRADF?.Actdif?.LineItem} key={0}/>}
+
+
 
                                 </tbody>
                             </table>
