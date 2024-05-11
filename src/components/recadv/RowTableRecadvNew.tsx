@@ -21,8 +21,8 @@ export function RowTableRecadvNew(props: RowTableRecadvNewProps) {
                 <td className="text-xs" style={{width: '5%'}}>-</td>
                 <td className="text-xs" style={{width: '5%'}}>{props.product.LineItemPriceWithoutCharges}</td>
 
-                <td className="text-xs" style={{width: '5%'}}>-</td>
-                <td className="text-xs" style={{width: '5%'}}>-</td>
+                <td className="text-xs" style={{width: '5%'}}>{props.product.QuantityDespatched}</td>
+                <td className="text-xs" style={{width: '5%'}}>{props.product.QuantityReceivedFact}</td>
                 <td className="text-xs" style={{width: '5%'}}>-</td>
                 <td className="text-xs" style={{width: '5%'}}>-</td>
                 <td className="text-xs" style={{width: '5%'}}>-</td>
