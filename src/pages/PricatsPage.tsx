@@ -36,6 +36,8 @@ function PricatsPage() {
 
     const [updateFlag, setUpdateFlag] = useState<boolean>(false);
 
+    const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+
     const [pricatForSend, setPricatForSend] = useState<any>(null);
     function isFetching(bool: boolean) {
         setFetching(bool);
@@ -132,15 +134,22 @@ function PricatsPage() {
     }
 
     return (
-        <>
+        <div className="" >
             {error != '' && <h2><ModalError title={error}/></h2>}
 
-            <Navigation/>
-            <div className="flex flex-row window-height">
-                <div className="w-44 py-2 border-r-2 bg-gray-50 justify-stretch">
+            <Navigation isHiddenMenu={false} isOpenMenu={isOpenMenu} setOpenMenu={setIsOpenMenu}/>
+            <div className="flex flex-row lg:window-height">
+                <div className="w-0 lg:w-44 py-2 border-r-2 bg-gray-50 justify-stretch">
                     <LeftNavigation/>
                 </div>
-                <div className="flex flex-col w-full">
+                <div className="flex flex-col w-full lg:w-full">
+
+                    {isOpenMenu &&
+                    <div className="w-full lg:hidden text-xs py-2 border-r-2 bg-gray-50 justify-stretch">
+                        <LeftNavigation/>
+                    </div>
+                    }
+
                     <div className="flex flex-row items-center w-full py-3 border-b-2 bg-gray-50">
                         <div className="inline-flex w-1/2">
                             <span className="font-bold px-5 text-xl">Прайс-листы</span>
@@ -176,12 +185,14 @@ function PricatsPage() {
 
             </div>
 
+
+
             {isModalImport && <ModalFormUploadFile importFile={importFile} onClose={showModalImport}></ModalFormUploadFile>}
 
             {isModalNotify && <ModalNotify title={"Результат операции"} message={modalMsg} onClose={showModalNotif}/>}
 
             {isModalSelect && <ModalSelect title={"Отправка документа"} message={modalMsg} onClose={showModalSelect} onAgreement={agreeToSend}/>}
-        </>
+        </div>
 
 
     )

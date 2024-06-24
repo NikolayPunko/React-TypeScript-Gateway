@@ -29,7 +29,7 @@ function PriceListTableRow(props: RowTableProps) {
 
     return (
         <>
-            <tr className="border-b table w-full h-auto table-fixed hover:bg-gray-100" >
+            <tr className="border-b table w-full h-auto table-auto lg:table-fixed hover:bg-gray-100" >
                 <td onClick={navigateToPricat} className="px-2" style={{width: '2%'}}>#</td>
                 <td className="px-1 py-2 " style={{width: '2%'}}><input type="checkbox"/></td>
                 <td onClick={navigateToPricat} className="text-xs" style={{width: '7%'}}>{props.pricat.documentId}</td>

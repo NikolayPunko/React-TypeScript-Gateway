@@ -45,14 +45,14 @@ export function PasswordChange({onClose} : PasswordChangeProps){
             />}
 
             {!isModalResult &&
-            <div className="w-[500px] p-5 z-30  rounded bg-white absolute top-1/3 left-1/2 -translate-x-1/2 px-8">
+            <div className="w-full  max-w-[500px] lg:w-[500px] p-5 z-30  rounded bg-white absolute top-1/3 left-1/2 -translate-x-1/2 px-8">
                 <span className="font-bold text-lg">Изменение пароля</span>
                 <div className="flex flex-col py-1">
                     <div className="flex flex-row justify-between items-center py-1">
                         <span className={styleLabelInput}>Старый пароль: <span className="text-red-500 font-bold">*</span></span>
                         <div className="flex flex-row justify-end">
                             <input
-                                className={styleInput + "w-64"}
+                                className={styleInput + "w-auto lg:w-64"}
                                 type={hidePassword.old ? "password" : ""}
                                 onChange={event => setPasswordObj({...passwordObj, oldPassword: event.target.value})}
                                 value={passwordObj.oldPassword}
@@ -75,7 +75,7 @@ export function PasswordChange({onClose} : PasswordChangeProps){
                         <span className={styleLabelInput}>Новый пароль: <span className="text-red-500 font-bold">*</span></span>
                         <div className="flex flex-row justify-end">
                             <input
-                                className={styleInput + "w-64"}
+                                className={styleInput + "w-auto lg:w-64"}
                                 type={hidePassword.new1 ? "password" : ""}
                                 onChange={event => setPasswordObj({...passwordObj, newPassword: event.target.value})}
                                 value={passwordObj.newPassword}
@@ -99,7 +99,7 @@ export function PasswordChange({onClose} : PasswordChangeProps){
                         <span className={styleLabelInput}>Подтвердить новый пароль: <span className="text-red-500 font-bold">*</span></span>
                         <div className="flex flex-row justify-end">
                             <input
-                                className={styleInput + "w-64"}
+                                className={styleInput + "w-auto lg:w-64"}
                                 type={hidePassword.new2 ? "password" : ""}
                                 onChange={event => setPasswordObj({...passwordObj, newPasswordReplay: event.target.value})}
                                 value={passwordObj.newPasswordReplay}

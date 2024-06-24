@@ -114,8 +114,8 @@ function PricatPage() {
 
                     {!xmlPage && <>
 
-                        <div className="flex flex-col px-10 py-3">
-                            <div className="flex flex-col w-1/2 py-1">
+                        <div className="flex flex-col px-3 lg:px-10 py-3">
+                            <div className="flex flex-col w-full lg:w-1/2 py-1">
                                 <span className="font-bold pb-1">Общая информация</span>
 
                                 <div className={propertyStyle}>
@@ -137,7 +137,7 @@ function PricatPage() {
 
                             </div>
 
-                            <div className="flex flex-col w-1/2 py-1">
+                            <div className="flex flex-col w-full lg:w-1/2 py-1">
                                 <span className="font-bold pb-1">Покупатель</span>
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">Наименование:</div>
@@ -149,7 +149,7 @@ function PricatPage() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col w-1/2 py-1">
+                            <div className="flex flex-col w-full lg:w-1/2 py-1">
                                 <span className="font-bold pb-1">Поставщик</span>
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">Наименование:</div>
@@ -164,7 +164,7 @@ function PricatPage() {
 
                         </div>
 
-                        <div className="bg-gray-100 w-full px-10">
+                        <div className="bg-gray-100 w-full px-3 lg:px-10">
                             <div className="flex flex-row py-2 justify-between">
                                 <div className="font-bold">
                                     Товарный раздел
@@ -173,157 +173,173 @@ function PricatPage() {
 
                             {!isPriceList() &&
                                 <>
-                                    <table>
-                                        <thead>
-                                        <tr className="border-b table w-full table-fixed align-top"
-                                            style={{width: 'calc( 100% - 0.5em )'}}>
-                                            <th className="px-2 pb-10 text-xs font-medium text-left"
-                                                style={{width: '4%'}}>№
-                                            </th>
+                                    <div className="w-full overflow-x-auto">
+                                        <table>
+                                            <thead>
+                                            <tr className="border-b table w-auto table-auto lg:table-fixed  align-top"
+                                                style={{width: 'calc( 100% - 0.5em )'}}>
+                                                <th className="px-2 pb-10 text-xs font-medium text-left min-w-[40px]"
+                                                    style={{width: '4%'}}>№
+                                                </th>
 
-                                            <th className=" text-xs font-medium text-left "
-                                                style={{width: '10%'}}>GTIN
-                                            </th>
-                                            <th className="text-xs font-medium text-left "
-                                                style={{width: '28%'}}>Наименование
-                                                товара
-                                            </th>
-                                            <th className="text-xs font-medium text-left "
-                                                style={{width: '8%'}}>Грамматура
-                                            </th>
-                                            <th className="text-xs font-medium text-left "
-                                                style={{width: '5%'}}>Отпускная цена
-                                                без НДС
-                                            </th>
+                                                <th className=" text-xs font-medium text-left min-w-[100px]"
+                                                    style={{width: '10%'}}>GTIN
+                                                </th>
+                                                <th className="text-xs font-medium text-left min-w-[200px]"
+                                                    style={{width: '28%'}}>Наименование
+                                                    товара
+                                                </th>
+                                                <th className="text-xs font-medium text-left min-w-[100px]"
+                                                    style={{width: '8%'}}>Грамматура
+                                                </th>
+                                                <th className="text-xs font-medium text-left min-w-[70px]"
+                                                    style={{width: '5%'}}>Отпускная цена
+                                                    без НДС
+                                                </th>
 
-                                            <th className="text-xs font-medium text-left " style={{width: '5%'}}>Цена со
-                                                скидкой
-                                            </th>
+                                                <th className="text-xs font-medium text-left min-w-[70px]"
+                                                    style={{width: '5%'}}>Цена со
+                                                    скидкой
+                                                </th>
 
-                                            <th className="text-xs font-medium text-left" style={{width: '12%'}}>
-                                                <div className="flex flex-row w-full justify-center">Период скидки</div>
-                                                <div className="flex flex-row w-full ">
-                                                    <div className="text-xs font-medium text-left w-1/2">С</div>
-                                                    <div className="text-xs font-medium text-left w-1/2">По</div>
-                                                </div>
-                                            </th>
+                                                <th className="text-xs font-medium text-left min-w-[140px]"
+                                                    style={{width: '12%'}}>
+                                                    <div className="flex flex-row w-full justify-center">Период скидки
+                                                    </div>
+                                                    <div className="flex flex-row w-full ">
+                                                        <div className="text-xs font-medium text-left w-1/2">С</div>
+                                                        <div className="text-xs font-medium text-left w-1/2">По</div>
+                                                    </div>
+                                                </th>
 
-                                            {/*<th className="text-xs font-medium text-left " style={{width: '8%'}}>Ставка НДС, %</th>*/}
-                                            <th className="text-xs font-medium text-left" style={{width: '5%'}}>Срок
-                                                годности
-                                            </th>
-                                            <th className="text-xs font-medium text-left " style={{width: '5%'}}>Кол-во
-                                                в 1тм.
-                                                шт
-                                            </th>
-                                            <th className="text-xs font-medium  text-left "
-                                                style={{width: '4%'}}>Длина
-                                            </th>
-                                            <th className="text-xs font-medium  text-left "
-                                                style={{width: '4%'}}>Ширина
-                                            </th>
-                                            <th className="text-xs font-medium  text-left "
-                                                style={{width: '4%'}}>Высота
-                                            </th>
-                                            <th className="text-xs font-medium  text-left " style={{width: '8%'}}>Код
-                                                товара
-                                            </th>
+                                                {/*<th className="text-xs font-medium text-left " style={{width: '8%'}}>Ставка НДС, %</th>*/}
+                                                <th className="text-xs font-medium text-left min-w-[60px]"
+                                                    style={{width: '5%'}}>Срок
+                                                    годности
+                                                </th>
+                                                <th className="text-xs font-medium text-left min-w-[50px]"
+                                                    style={{width: '5%'}}>Кол-во
+                                                    в 1тм.
+                                                    шт
+                                                </th>
+                                                <th className="text-xs font-medium  text-left min-w-[50px]"
+                                                    style={{width: '4%'}}>Длина
+                                                </th>
+                                                <th className="text-xs font-medium  text-left min-w-[50px]"
+                                                    style={{width: '4%'}}>Ширина
+                                                </th>
+                                                <th className="text-xs font-medium  text-left min-w-[50px]"
+                                                    style={{width: '4%'}}>Высота
+                                                </th>
+                                                <th className="text-xs font-medium  text-left min-w-[100px]"
+                                                    style={{width: '8%'}}>Код
+                                                    товара
+                                                </th>
 
-                                        </tr>
+                                            </tr>
 
-                                        </thead>
+                                            </thead>
 
-                                        <tbody className="block overflow-y-scroll bg-white"
-                                               style={{maxHeight: 'calc( 55vh)'}}>
+                                            <tbody
+                                                className="block table-auto lg:table-fixed overflow-y-scroll overflow-x-hidden bg-white"
+                                                style={{maxHeight: 'calc( 55vh)'}}>
 
-                                        {xmlObj.PRICAT?.SG17?.SG36?.map((product, index) => <RowTablePricat
-                                            selectItem={selectItem} index={index} product={product}
-                                            isPriceList={isPriceList()} activeItem={activeItem}
-                                            key={index}/>)}
+                                            {xmlObj.PRICAT?.SG17?.SG36?.map((product, index) => <RowTablePricat
+                                                selectItem={selectItem} index={index} product={product}
+                                                isPriceList={isPriceList()} activeItem={activeItem}
+                                                key={index}/>)}
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
 
-                                    <div className="flex flex-row py-2 justify-between">
-                                        <div>
-                                            <span className="font-bold">Список магазинов</span> для товара №{activeItem+1}
-                                        </div>
+
                                     </div>
+                                    <div>
+                                        <div className="flex flex-row py-2 justify-between">
+                                            <div>
+                                                <span className="font-bold">Список магазинов</span> для товара
+                                                №{activeItem + 1}
+                                            </div>
+                                        </div>
 
-                                    <table>
-                                        <thead>
-                                        <tr className="border-b table w-full table-fixed align-top"
-                                            style={{width: 'calc( 100% - 0.5em )'}}>
-                                            <th className="px-2 pb-2 text-xs font-medium text-left"
-                                                style={{width: '10%'}}>№
-                                            </th>
+                                        <table>
+                                            <thead>
+                                            <tr className="border-b table w-full table-fixed align-top"
+                                                style={{width: 'calc( 100% - 0.5em )'}}>
+                                                <th className="px-2 pb-2 text-xs font-medium text-left"
+                                                    style={{width: '10%'}}>№
+                                                </th>
 
-                                            <th className=" text-xs font-medium text-left "
-                                                style={{width: '40%'}}>GLN
-                                            </th>
-                                            <th className="text-xs font-medium text-left "
-                                                style={{width: '50%'}}>Наименование магазина
-                                            </th>
+                                                <th className=" text-xs font-medium text-left "
+                                                    style={{width: '40%'}}>GLN
+                                                </th>
+                                                <th className="text-xs font-medium text-left "
+                                                    style={{width: '50%'}}>Наименование магазина
+                                                </th>
 
-                                        </tr>
+                                            </tr>
 
-                                        </thead>
+                                            </thead>
 
-                                        <tbody className="block overflow-y-scroll bg-white"
-                                               style={{maxHeight: 'calc( 25vh)'}}>
+                                            <tbody className="block overflow-y-scroll bg-white"
+                                                   style={{maxHeight: 'calc( 25vh)'}}>
 
-                                        {xmlObj.PRICAT?.SG17?.SG36[activeItem]?.SG52?.map((item, index) =>
-                                            <RowTableShops item={item} index={index} key={index}/>)}
+                                            {xmlObj.PRICAT?.SG17?.SG36[activeItem]?.SG52?.map((item, index) =>
+                                                <RowTableShops item={item} index={index} key={index}/>)}
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
                                 </>
                             }
 
 
                             {isPriceList() && //протокол к прейскуранту
-                                <>
-                                    <table>
+                                <div className="w-full overflow-x-auto">
+                                    <table className="">
                                         <thead>
-                                        <tr className="border-b table w-full table-fixed align-top"
+                                        <tr className="border-b table w-auto table-auto lg:table-fixed  align-top"
                                             style={{width: 'calc( 100% - 0.5em )'}}>
-                                            <th className="px-2 pb-10 text-xs font-medium text-left"
+                                            <th className="px-2 pb-10 text-xs font-medium text-left min-w-[40px]"
                                                 style={{width: '4%'}}>№
                                             </th>
 
-                                            <th className=" text-xs font-medium text-left "
+                                            <th className=" text-xs font-medium text-left min-w-[100px]"
                                                 style={{width: '10%'}}>GTIN
                                             </th>
-                                            <th className="text-xs font-medium text-left "
+                                            <th className="text-xs font-medium text-left min-w-[200px]"
                                                 style={{width: '28%'}}>Наименование
                                                 товара
                                             </th>
-                                            <th className="text-xs font-medium text-left "
+                                            <th className="text-xs font-medium text-left min-w-[100px]"
                                                 style={{width: '8%'}}>Грамматура
                                             </th>
-                                            <th className="text-xs font-medium text-left "
+                                            <th className="text-xs font-medium text-left min-w-[100px]"
                                                 style={{width: '8%'}}>Отпускная цена
                                                 без НДС
                                             </th>
                                             {/*<th className="text-xs font-medium text-left " style={{width: '8%'}}>Ставка НДС, %</th>*/}
-                                            <th className="text-xs font-medium  text-left " style={{width: '8%'}}>Срок
+                                            <th className="text-xs font-medium  text-left min-w-[70px]"
+                                                style={{width: '8%'}}>Срок
                                                 годности
                                             </th>
-                                            <th className="text-xs font-medium  text-left " style={{width: '8%'}}>Кол-во
+                                            <th className="text-xs font-medium  text-left min-w-[70px]"
+                                                style={{width: '8%'}}>Кол-во
                                                 в 1тм.
                                                 шт
                                             </th>
-                                            <th className="text-xs font-medium  text-left "
+                                            <th className="text-xs font-medium  text-left min-w-[50px]"
                                                 style={{width: '6%'}}>Длина
                                             </th>
-                                            <th className="text-xs font-medium  text-left "
+                                            <th className="text-xs font-medium  text-left min-w-[50px]"
                                                 style={{width: '6%'}}>Ширина
                                             </th>
-                                            <th className="text-xs font-medium  text-left "
+                                            <th className="text-xs font-medium  text-left min-w-[50px]"
                                                 style={{width: '6%'}}>Высота
                                             </th>
-                                            <th className="text-xs font-medium  text-left " style={{width: '8%'}}>Код
+                                            <th className="text-xs font-medium  text-left min-w-[100px]"
+                                                style={{width: '8%'}}>Код
                                                 товара
                                             </th>
 
@@ -331,8 +347,9 @@ function PricatPage() {
 
                                         </thead>
 
-                                        <tbody className="block overflow-y-scroll bg-white"
-                                               style={{maxHeight: 'calc( 100vh - 135px )'}}>
+                                        <tbody
+                                            className="block table-auto lg:table-fixed overflow-y-scroll overflow-x-hidden bg-white"
+                                            style={{maxHeight: 'calc( 100vh - 135px )'}}>
 
                                         {xmlObj.PRICAT?.SG17?.SG36?.map((product, index) => <RowTablePricat
                                             selectItem={selectItem} index={index} product={product}
@@ -342,7 +359,7 @@ function PricatPage() {
                                         </tbody>
                                     </table>
 
-                                </>
+                                </div>
                             }
 
 

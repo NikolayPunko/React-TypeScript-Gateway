@@ -16,7 +16,7 @@ export function ModalNotify({title, message, onClose} : ModalProps) {
                 onClick={onClose}
             />
             <div
-                className="w-[500px] p-5 z-30  rounded bg-white absolute top-1/3 left-1/2 -translate-x-1/2 px-8"
+                className="w-full max-w-[500px] lg:w-[500px] p-5 z-30  rounded bg-white absolute top-1/3 left-1/2 -translate-x-1/2 px-8"
             >
                 <h1 className="text-xl font-medium text-start mb-2">{title}</h1>
                 <div className="flex flex-col">

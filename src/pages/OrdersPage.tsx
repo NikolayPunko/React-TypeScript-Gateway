@@ -53,7 +53,7 @@ function OrdersPage() {
         <>
             {error != '' && <h2><ModalError title={error}/></h2>}
 
-            <Navigation/>
+            {/*<Navigation/>*/}
             <div className="flex flex-row window-height">
                 <div className="w-44 py-2 border-r-2 bg-gray-50 justify-stretch">
                     <LeftNavigation/>

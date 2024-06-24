@@ -77,7 +77,7 @@ function ProfilePage() {
 
     return (
         <>
-            <Navigation/>
+            <Navigation isHiddenMenu={true} isOpenMenu={false} setOpenMenu={() => {}}/>
 
             <div className="flex flex-col">
                 <div className="bg-gray-100 h-14 flex flex-row items-center justify-between border-b-2 px-5">
@@ -96,8 +96,8 @@ function ProfilePage() {
                     </div>
                 </div>
 
-                <div className="px-32 py-10">
-                    <div className="flex flex-row justify-start gap-x-5">
+                <div className="px-10 lg:px-32 py-10">
+                    <div className="flex flex-wrap flex-row justify-start gap-x-5 gap-y-3">
                         <div className="flex flex-col">
                             <span className={styleLabelInput}>GLN</span>
                             <input
@@ -115,7 +115,7 @@ function ProfilePage() {
                             />
                         </div>
                     </div>
-                    <div className="flex flex-row justify-start gap-x-5 pt-4">
+                    <div className="flex flex-wrap flex-row justify-start gap-x-5 gap-y-3 pt-4">
                         <div className="flex flex-col">
                             <span className={styleLabelInput}>Фамилия <span className="text-red-500 font-bold">*</span></span>
                             <input
@@ -141,7 +141,7 @@ function ProfilePage() {
                             />
                         </div>
                     </div>
-                    <div className="flex flex-row justify-start gap-x-5 pt-4">
+                    <div className="flex flex-wrap flex-row justify-start gap-x-5 gap-y-3 pt-4">
                         <div className="flex flex-col">
                             <span className={styleLabelInput}>Email <span className="text-red-500 font-bold">*</span></span>
                             <input
@@ -159,7 +159,7 @@ function ProfilePage() {
                             />
                         </div>
                     </div>
-                    <div className="flex flex-row justify-start gap-x-5 pt-4">
+                    <div className="flex flex-wrap flex-row justify-start gap-x-5 gap-y-3 pt-4">
                         <div className="flex flex-col">
                             <span className={styleLabelInput}>Дата обновления профиля</span>
                             <input

@@ -23,10 +23,10 @@ interface PriceListTableProps {
      const style_th = " text-xs font-medium text-left truncate ";
 
     return (
-        <div className="w-full">
-            <table>
+        <div className="w-full overflow-x-auto" >
+            <table className="">
                 <thead>
-                <tr className="border-b table w-full table-fixed" style={{width: 'calc(100% - 8px)'}}>
+                <tr className="border-b table w-full table-auto lg:table-fixed" style={{width: 'calc(100% - 8px)'}}>
                     <th className="px-2 text-left" style={{width: '2%'}}>#</th>
                     <th className="px-1 text-left" style={{width: '2%'}}><input type="checkbox"/></th>
                     <th className={style_th} style={{width: '7%'}}>Id документа</th>
@@ -44,7 +44,9 @@ interface PriceListTableProps {
                 </tr>
                 </thead>
 
-                <tbody className="block overflow-y-scroll" style={{height: 'calc( 100vh - 212px )'}} onScroll={scrollHandler}>
+
+                <tbody className="block overflow-y-scroll overflow-x-hidden h-[80vh] lg:h-[calc(100vh_-_212px)]" onScroll={scrollHandler}>
+
 
                 {/*{props.isLoading && <tr><td className="py-5 text-center w-screen">Загрузка...</td></tr>}*/}
 

@@ -72,29 +72,29 @@ export function RowTablePricat(props: RowTablePriceListProps) {
             {!props.isPriceList &&
                 <>
                     <tr onClick={() => props.selectItem(props.index)}
-                        className={"table w-full h-auto table-fixed hover:bg-gray-200 border-b-2" + styleActiveRow}>
-                        <td className="px-2 text-xs" style={{width: '4%'}}>{props.product.LIN?.E1082}</td>
-                        <td className="py-3 text-xs" style={{width: '10%'}}>{props.product.LIN?.C212?.E7140}</td>
-                        <td className="text-xs" style={{width: '28%'}}>{findName()}</td>
+                        className={"table w-full h-auto table-auto lg:table-fixed hover:bg-gray-200 border-b-2" + styleActiveRow}>
+                        <td className="px-2 text-xs min-w-[40px]" style={{width: '4%'}}>{props.product.LIN?.E1082}</td>
+                        <td className="py-3 text-xs min-w-[100px]" style={{width: '10%'}}>{props.product.LIN?.C212?.E7140}</td>
+                        <td className="text-xs pr-2 lg:pr-0 min-w-[200px]" style={{width: '28%'}}>{findName()}</td>
 
-                        <td className="text-xs" style={{width: '8%'}}>{props.product.MEA?.C174?.E6314}</td>
+                        <td className="text-xs min-w-[100px]" style={{width: '8%'}}>{props.product.MEA?.C174?.E6314}</td>
 
-                        <td className="text-xs" style={{width: '5%'}}>{SG40_PRI("AAE")}</td>
-                        <td className="text-xs" style={{width: '5%'}}>{SG40_PRI("AAQ")}</td>
+                        <td className="text-xs min-w-[70px]" style={{width: '5%'}}>{SG40_PRI("AAE")}</td>
+                        <td className="text-xs min-w-[70px]" style={{width: '5%'}}>{SG40_PRI("AAQ")}</td>
 
-                        <td className="text-xs"
+                        <td className="text-xs min-w-[70px]"
                             style={{width: '6%'}}>{ParseDate.separateTwoDatesAndParse(SG40_DTM("AAQ"))[0]}</td>
-                        <td className="text-xs"
+                        <td className="text-xs min-w-[70px]"
                             style={{width: '6%'}}>{ParseDate.separateTwoDatesAndParse(SG40_DTM("AAQ"))[1]}</td>
 
                         {/*<td className="text-xs" style={{width: '8%'}}>{props.product.SG38?.TAX?.C243?.E5278}</td>*/}
-                        <td className="text-xs" style={{width: '5%'}}>{props.product.DTM?.C507?.E2380}</td>
+                        <td className="text-xs min-w-[60px]" style={{width: '5%'}}>{props.product.DTM?.C507?.E2380}</td>
 
-                        <td className="text-xs" style={{width: '5%'}}>{props.product.QTY?.C186?.E6060}</td>
-                        <td className="text-xs" style={{width: '4%'}}>{findPackageSize("LN")}</td>
-                        <td className="text-xs" style={{width: '4%'}}>{findPackageSize("WD")}</td>
-                        <td className="text-xs" style={{width: '4%'}}>{findPackageSize("HT")}</td>
-                        <td className="text-xs" style={{width: '8%'}}>{props.product.PIA?.C212?.E7140}</td>
+                        <td className="text-xs min-w-[50px]" style={{width: '5%'}}>{props.product.QTY?.C186?.E6060}</td>
+                        <td className="text-xs min-w-[50px]" style={{width: '4%'}}>{findPackageSize("LN")}</td>
+                        <td className="text-xs min-w-[50px]" style={{width: '4%'}}>{findPackageSize("WD")}</td>
+                        <td className="text-xs min-w-[50px]" style={{width: '4%'}}>{findPackageSize("HT")}</td>
+                        <td className="text-xs min-w-[100px]" style={{width: '8%'}}>{props.product.PIA?.C212?.E7140}</td>
                     </tr>
                 </>
             }
@@ -103,23 +103,23 @@ export function RowTablePricat(props: RowTablePriceListProps) {
             {props.isPriceList &&
                 <>
                     <tr onClick={() => props.selectItem(props.index)}
-                        className={"table w-full h-auto table-fixed hover:bg-gray-200 border-b-2" + styleActiveRow}>
-                        <td className="px-2 text-xs" style={{width: '4%'}}>{props.product.LIN?.E1082}</td>
-                        <td className="py-3 text-xs" style={{width: '10%'}}>{props.product.LIN?.C212?.E7140}</td>
-                        <td className="text-xs" style={{width: '28%'}}>{findName()}</td>
+                        className={"table w-full h-auto table-auto lg:table-fixed hover:bg-gray-200 border-b-2" + styleActiveRow}>
+                        <td className="px-2 text-xs min-w-[40px]" style={{width: '4%'}}>{props.product.LIN?.E1082}</td>
+                        <td className="py-3 text-xs min-w-[100px]" style={{width: '10%'}}>{props.product.LIN?.C212?.E7140}</td>
+                        <td className="text-xs pr-2 lg:pr-0 min-w-[200px]" style={{width: '28%'}}>{findName()}</td>
 
-                        <td className="text-xs" style={{width: '8%'}}>{props.product.MEA?.C174?.E6314}</td>
+                        <td className="text-xs min-w-[100px]" style={{width: '8%'}}>{props.product.MEA?.C174?.E6314}</td>
 
-                        <td className="text-xs" style={{width: '8%'}}>{SG40_PRI("AAE")}</td>
+                        <td className="text-xs min-w-[100px]" style={{width: '8%'}}>{SG40_PRI("AAE")}</td>
 
                         {/*<td className="text-xs" style={{width: '8%'}}>{props.product.SG38?.TAX?.C243?.E5278}</td>*/}
-                        <td className="text-xs" style={{width: '8%'}}>{props.product.DTM?.C507?.E2380}</td>
+                        <td className="text-xs min-w-[70px]" style={{width: '8%'}}>{props.product.DTM?.C507?.E2380}</td>
 
-                        <td className="text-xs" style={{width: '8%'}}>{props.product.QTY?.C186?.E6060}</td>
-                        <td className="text-xs" style={{width: '6%'}}>{findPackageSize("LN")}</td>
-                        <td className="text-xs" style={{width: '6%'}}>{findPackageSize("WD")}</td>
-                        <td className="text-xs" style={{width: '6%'}}>{findPackageSize("HT")}</td>
-                        <td className="text-xs" style={{width: '8%'}}>{props.product.PIA?.C212?.E7140}</td>
+                        <td className="text-xs min-w-[70px]" style={{width: '8%'}}>{props.product.QTY?.C186?.E6060}</td>
+                        <td className="text-xs min-w-[50px]" style={{width: '6%'}}>{findPackageSize("LN")}</td>
+                        <td className="text-xs min-w-[50px]" style={{width: '6%'}}>{findPackageSize("WD")}</td>
+                        <td className="text-xs min-w-[50px]" style={{width: '6%'}}>{findPackageSize("HT")}</td>
+                        <td className="text-xs min-w-[100px]" style={{width: '8%'}}>{props.product.PIA?.C212?.E7140}</td>
                     </tr>
                     {/*<tr className="table w-full h-auto table-fixed border-b-2">*/}
                     {/*    <td className="bg-gray-100 text-xs py-1 px-1">*/}

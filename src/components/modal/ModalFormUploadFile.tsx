@@ -29,7 +29,7 @@ export function ModalFormUploadFile({onClose, importFile} : ModalFormUploadFileP
                 onClick={onClose}
             />
 
-            <div className="w-[500px] p-5 z-30  rounded bg-white absolute top-1/3 left-1/2 -translate-x-1/2 px-8">
+            <div className="w-full max-w-[500px] lg:w-[500px] p-5 z-30  rounded bg-white absolute top-1/3 left-1/2 -translate-x-1/2 px-8">
                 <span className="font-bold  text-lg">Выберите файл для импорта</span>
                 <div className="flex flex-col py-1">
                     <span className="text-sm">.xml</span>
