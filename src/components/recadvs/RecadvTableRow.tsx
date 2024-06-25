@@ -29,21 +29,21 @@ function RecadvTableRow(props: RecadvTableRowProps) {
 
     return (
         <>
-            <tr className="border-b table w-full h-auto table-fixed hover:bg-gray-100" >
-                <td onClick={navigateToPricat} className="px-2" style={{width: '2%'}}>#</td>
-                <td className="px-1 py-2 " style={{width: '2%'}}><input type="checkbox"/></td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '7%'}}>{props.recadv.documentId}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.recadv.documentStatus}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '7%'}}>{ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.recadv.dateTime))}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '10%'}}>{props.recadv.documentNumber}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '8%'}}>{ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.recadv.documentDate))}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '11%'}}>{findLabelByGln(props.recadv.receiverId) + " "}<span className="text-gray-400">{props.recadv.receiverId}</span></td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '11%'}}>{findLabelByGln(props.recadv.senderId) + " " }<span className="text-gray-400">{props.recadv.senderId}</span></td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '6%'}}>{props.recadv.edi}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '7%'}}>{props.recadv.documentType}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '8%'}}>{ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.recadv.dateTimeInsert))}</td>
-                <td onClick={navigateToPricat} className="text-xs" style={{width: '8%'}}>{ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.recadv.dateTimeUpdate))}</td>
-                <td className="text-xs" style={{width: '3%'}} >
+            <tr className="border-b table w-full h-auto table-auto lg:table-fixed hover:bg-gray-100" >
+                <td onClick={navigateToPricat} className="px-2 min-w-[20px]" style={{width: '2%'}}>#</td>
+                <td className="px-1 py-2 min-w-[20px]" style={{width: '2%'}}><input type="checkbox"/></td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[80px]" style={{width: '7%'}}>{props.recadv.documentId}</td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[120px]" style={{width: '10%'}}>{props.recadv.documentStatus}</td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[100px]" style={{width: '7%'}}>{ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.recadv.dateTime))}</td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[120px]" style={{width: '10%'}}>{props.recadv.documentNumber}</td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[100px]" style={{width: '8%'}}>{ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.recadv.documentDate))}</td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[120px]" style={{width: '11%'}}>{findLabelByGln(props.recadv.receiverId) + " "}<span className="text-gray-400">{props.recadv.receiverId}</span></td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[120px]" style={{width: '11%'}}>{findLabelByGln(props.recadv.senderId) + " " }<span className="text-gray-400">{props.recadv.senderId}</span></td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[80px]" style={{width: '6%'}}>{props.recadv.edi}</td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[100px]" style={{width: '7%'}}>{props.recadv.documentType}</td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[100px]" style={{width: '8%'}}>{ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.recadv.dateTimeInsert))}</td>
+                <td onClick={navigateToPricat} className="text-xs min-w-[100px]" style={{width: '8%'}}>{ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(props.recadv.dateTimeUpdate))}</td>
+                <td className="text-xs max-w-[30px] min-w-[30px]" style={{width: '3%'}} >
                     <button disabled={!displaySubmit()}
                         className="disabled:hidden"
                         onClick={() => props.sendRecadv(props.recadv)}>

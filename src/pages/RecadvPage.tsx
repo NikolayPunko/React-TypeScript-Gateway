@@ -114,8 +114,8 @@ function RecadvPage() {
 
                     {!xmlPage && <>
 
-                        <div className="flex flex-col px-10 py-3">
-                            <div className="flex flex-col w-1/2 py-1">
+                        <div className="flex flex-col px-3 lg:px-10 py-3">
+                            <div className="flex flex-col w-full lg:w-1/2 py-1">
                                 <span className="font-bold pb-1">Общая информация</span>
 
                                 <div className={propertyStyle}>
@@ -130,7 +130,7 @@ function RecadvPage() {
 
                             </div>
 
-                            <div className="flex flex-col w-1/2 py-1">
+                            <div className="flex flex-col w-full lg:w-1/2 py-1">
                                 <span className="font-bold pb-1">Покупатель</span>
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">Наименование:</div>
@@ -142,7 +142,7 @@ function RecadvPage() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col w-1/2 py-1">
+                            <div className="flex flex-col w-full lg:w-1/2 py-1">
                                 <span className="font-bold pb-1">Поставщик</span>
                                 <div className={propertyStyle}>
                                     <div className="w-1/2">Наименование:</div>
@@ -158,28 +158,28 @@ function RecadvPage() {
 
                         </div>
 
-                        <div className="bg-gray-100 w-full px-10">
+                        <div className="bg-gray-100 w-full px-3 lg:px-10">
                             <div className="flex flex-row py-2 justify-between">
                                 <div className="font-bold">
                                     Товарный раздел
                                 </div>
                             </div>
 
-
+                            <div className="w-full overflow-x-auto">
                             <table>
                                 <thead>
-                                <tr className="border-b table w-full table-fixed align-top" style={{width: 'calc( 100% - 0.5em )'}}>
-                                    <th className="px-2 text-xs font-medium text-left" style={{width: '4%'}}>№</th>
-                                    <th className=" text-xs font-medium text-left " style={{width: '10%'}}>GTIN</th>
-                                    <th className="text-xs font-medium text-left " style={{width: '25%'}}>Наименование товара</th>
+                                <tr className="border-b table w-auto table-auto lg:table-fixed  align-top" style={{width: 'calc( 100% - 0.5em )'}}>
+                                    <th className="px-2 text-xs font-medium text-left min-w-[40px]" style={{width: '4%'}}>№</th>
+                                    <th className=" text-xs font-medium text-left min-w-[100px]" style={{width: '10%'}}>GTIN</th>
+                                    <th className="text-xs font-medium text-left min-w-[200px]" style={{width: '25%'}}>Наименование товара</th>
 
-                                    <th className="text-xs font-medium text-left " style={{width: '5%'}}>Ед. изм</th>
-                                    <th className="text-xs font-medium text-left " style={{width: '5%'}}>№ и дата ТТН</th>
-                                    <th className="text-xs font-medium  text-left " style={{width: '5%'}}>Кол-во брака</th>
-                                    <th className="text-xs font-medium  text-left " style={{width: '5%'}}>Вид брака</th>
-                                    <th className="text-xs font-medium  text-left " style={{width: '5%'}}>Цена руб.</th>
+                                    <th className="text-xs font-medium text-left min-w-[100px]" style={{width: '5%'}}>Ед. изм</th>
+                                    <th className="text-xs font-medium text-left min-w-[100px]" style={{width: '5%'}}>№ и дата ТТН</th>
+                                    <th className="text-xs font-medium  text-left min-w-[100px]" style={{width: '5%'}}>Кол-во брака</th>
+                                    <th className="text-xs font-medium  text-left min-w-[100px]" style={{width: '5%'}}>Вид брака</th>
+                                    <th className="text-xs font-medium  text-left min-w-[100px]" style={{width: '5%'}}>Цена руб.</th>
 
-                                    <th className="text-xs font-medium text-left" style={{width: '10%'}}>
+                                    <th className="text-xs font-medium text-left min-w-[100px]" style={{width: '10%'}}>
                                         <div className="flex flex-row w-full justify-center">Количество</div>
                                         <div className="flex flex-row w-full ">
                                             <div className="text-xs font-medium text-left w-1/2">по ТТН</div>
@@ -187,7 +187,7 @@ function RecadvPage() {
                                         </div>
                                     </th>
 
-                                    <th className="text-xs font-medium text-left" style={{width: '20%'}}>
+                                    <th className="text-xs font-medium text-left min-w-[200px]" style={{width: '20%'}}>
                                         <div className="flex flex-row w-full justify-center">Разница</div>
                                         <div className="flex flex-row w-full">
                                             <div className="w-1/2 flex flex-col" >
@@ -207,13 +207,14 @@ function RecadvPage() {
                                         </div>
 
                                     </th>
-                                    <th className="text-xs font-medium text-left" style={{width: '6%'}}>Код товара</th>
+                                    <th className="text-xs font-medium text-left min-w-[100px]" style={{width: '6%'}}>Код товара</th>
 
                                 </tr>
 
                                 </thead>
 
-                                <tbody className="block overflow-y-scroll bg-white" style={{maxHeight: 'calc( 100vh - 135px )'}}>
+                                <tbody className="block table-auto lg:table-fixed overflow-y-scroll overflow-x-hidden bg-white"
+                                       style={{maxHeight: 'calc( 55vh)'}}>
 
                                 {xmlObj.RECADV?.SG16?.SG22?.map((product, index) => <RowTableRecadv product={product} key={index}/>)}
 
@@ -228,6 +229,7 @@ function RecadvPage() {
 
                                 </tbody>
                             </table>
+                            </div>
 
                         </div>
 

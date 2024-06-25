@@ -142,7 +142,7 @@ function PricatsPage() {
                 <div className="w-0 lg:w-44 py-2 border-r-2 bg-gray-50 justify-stretch">
                     <LeftNavigation/>
                 </div>
-                <div className="flex flex-col w-full lg:w-full">
+                <div className="flex flex-col w-full">
 
                     {isOpenMenu &&
                     <div className="w-full lg:hidden text-xs py-2 border-r-2 bg-gray-50 justify-stretch">

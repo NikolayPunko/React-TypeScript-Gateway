@@ -39,7 +39,7 @@ function Authorization() {
 
 
     return (
-        <div className="w-[640px] h-[500px]  px-36 rounded absolute top-28 left-1/2 -translate-x-1/2 shadow-2xl">
+        <div className="w-[375px] lg:w-[640px] h-[500px] px-5 lg:px-36 rounded absolute top-28 left-1/2 -translate-x-1/2 shadow-2xl border-2">
             <div className="h-[150px] py-14 text-center">
                <span className="text-3xl font-bold">
                    Сервис EDI
@@ -86,7 +86,7 @@ function Authorization() {
                                     onChange={event => setPassword(event.target.value)}
                                     value={password}
                                 />
-                                <div className="absolute ml-80 mt-1">
+                                <div className="absolute ml-[300px] lg:ml-80 mt-1">
                                     {hidePassword &&
                                         <svg onClick={() => setHidePassword(false)} className="h-5 w-5 text-black"
                                              fill="none" viewBox="0 0 24 24"

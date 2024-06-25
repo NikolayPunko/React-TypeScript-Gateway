@@ -68,20 +68,20 @@ export function FilterPanelRecadv(props: FilterPanelRecadvProps) {
     }, [DateObj]);
 
     return (
-        <div className="inline-flex w-full pb-3 border-b-2 bg-gray-50">
-            <div className="flex flex-col px-2 w-2/12">
+        <div className="flex flex-wrap w-full pb-3 border-b-2 bg-gray-50">
+            <div className="flex flex-col px-2 w-52">
                 <span className="text-xs font-medium py-1">Номер сообщения</span>
                 <input className="border rounded border-slate-400 px-2 text-xs font-medium
                  h-[28px] outline-blue-700 focus-visible:outline-1  hover:border-blue-700 " placeholder="Все сообщения"
                        onChange={handleChangeNDE} value={NDE}
                 />
             </div>
-            <div className="flex flex-col px-2 w-2/12">
+            <div className="flex flex-col px-2 w-52">
                 <span className="text-xs font-medium py-1">Период</span>
                 <DateRange onChangeDate={e => {setDateObj(e)}} value={DateObj} setValue={setDateObj}/>
             </div>
 
-            <div className="flex flex-col px-2 w-2/12">
+            <div className="flex flex-col px-2 w-52">
                 <span className="text-xs font-medium py-1">Статус</span>
                 <Select className="text-xs font-medium"
                         placeholder={"Все статусы"}
