@@ -13,6 +13,7 @@ import ProfilePage from "./pages/settings/ProfilePage";
 import RecadvsPage from "./pages/RecadvsPage";
 import NotFound from "./pages/NotFound";
 import RecadvPage from "./pages/RecadvPage";
+import CreateRecadvPage from "./pages/CreateRecadvPage";
 
 
 
@@ -47,6 +48,7 @@ function App() {
 
                         <Route path="/recadvs" element={<RecadvsPage/>} />
                         <Route path="/recadvs/:id" element={<RecadvPage/>} />
+                        <Route path="/recadvs/create" element={<CreateRecadvPage/>} />
 
                         <Route path="/settings/profile" element={<ProfilePage/>} />
                     </Route>

@@ -16,18 +16,18 @@ export function RowTableRecadvNew(props: RowTableRecadvNewProps) {
 
 
                 <td className="text-xs min-w-[100px]" style={{width: '5%'}}>{props.product.LineItemQuantityUOM}</td>
-                <td className="text-xs min-w-[100px]" style={{width: '5%'}}>-</td>
-                <td className="text-xs min-w-[100px]" style={{width: '5%'}}>-</td>
+                <td className="text-xs min-w-[100px]" style={{width: '5%'}}>{props.product.LineItemAmountOrdered}</td>
+                <td className="text-xs min-w-[100px]" style={{width: '5%'}}>{props.product.QuantityReceivedFact}</td>
                 <td className="text-xs min-w-[100px]" style={{width: '5%'}}>-</td>
                 <td className="text-xs min-w-[100px]" style={{width: '5%'}}>{props.product.LineItemPriceWithoutCharges}</td>
 
                 <td className="text-xs min-w-[50px]" style={{width: '5%'}}>{props.product.QuantityDespatched}</td>
                 <td className="text-xs min-w-[50px]" style={{width: '5%'}}>{props.product.QuantityReceivedFact}</td>
-                <td className="text-xs min-w-[50px]" style={{width: '5%'}}>-</td>
-                <td className="text-xs min-w-[50px]" style={{width: '5%'}}>-</td>
-                <td className="text-xs min-w-[50px]" style={{width: '5%'}}>-</td>
-                <td className="text-xs min-w-[50px]" style={{width: '5%'}}>-</td>
-                <td className="text-xs min-w-[100px]" style={{width: '6%'}}>-</td>
+                <td className="text-xs min-w-[50px]" style={{width: '5%'}}>{props.product.QuantityReceivedShortage}</td>
+                <td className="text-xs min-w-[50px]" style={{width: '5%'}}>{props.product.AmountReceivedShortageWithoutCharge}</td>
+                <td className="text-xs min-w-[50px]" style={{width: '5%'}}>{props.product.QuantityReceivedSurplus}</td>
+                <td className="text-xs min-w-[50px]" style={{width: '5%'}}>{props.product.AmountReceivedSurplusWithoutCharge}</td>
+                <td className="text-xs min-w-[100px]" style={{width: '6%'}}>{props.product.LineItemReceiverID}</td>
             </tr>
 
         </>

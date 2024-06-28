@@ -11,9 +11,12 @@ import {ModalFormUploadFile} from "../components/modal/ModalFormUploadFile";
 import {ModalNotify} from "../components/modal/ModalNotify";
 import {ModalSelect} from "../components/modal/ModalSelect";
 import {RecadvsResponse} from "../models/response/RecadvsResponse";
+import {useNavigate} from "react-router-dom";
 
 
 function RecadvsPage() {
+
+    const navigate = useNavigate();
 
     const [recadvs, setRecadvs] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -153,9 +156,13 @@ function RecadvsPage() {
                         </div>
                         <div className="inline-flex w-1/2 justify-end">
 
-
+                            <button className="px-2 mr-5 h-7 w-auto rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200 inline-flex items-center"
+                                    onClick={() => navigate("/recadvs/create")}>
+                                <svg width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" clipRule="evenodd" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H14C14.5523 23 15 22.5523 15 22C15 21.4477 14.5523 21 14 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V8C19 8.55228 19.4477 9 20 9C20.5523 9 21 8.55228 21 8V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12V15H15C14.4477 15 14 15.4477 14 16C14 16.5523 14.4477 17 15 17H18V20C18 20.5523 18.4477 21 19 21C19.5523 21 20 20.5523 20 20V17H23C23.5523 17 24 16.5523 24 16C24 15.4477 23.5523 15 23 15H20V12Z" fill="#000000"></path> </g></svg>
+                                <span className="pl-1">Создать</span>
+                            </button>
                             <button
-                                className="px-2 mx-5 h-7 w-20 rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200 inline-flex items-center"
+                                className="px-2 mr-5 h-7 w-20 rounded text-xs font-medium shadow-sm border border-slate-400 hover:bg-gray-200 inline-flex items-center"
                                 onClick={() => showModalImport()}>
                                 <svg className="h-4 w-4 text-black" width="24" height="24" viewBox="0 0 24 24"
                                      stroke="currentColor" fill="none" >
@@ -166,6 +173,7 @@ function RecadvsPage() {
                                 </svg>
                                 <span>Импорт</span>
                             </button>
+
                         </div>
                     </div>
 

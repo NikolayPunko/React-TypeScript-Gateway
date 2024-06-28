@@ -3,10 +3,16 @@ export default class ParseDate {
         return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
     }
 
-    static ParseDateToFormatYYYY_MM_dd_HH_mm_ss(date: Date){
-        return  date.getFullYear() +"-"+ (date.getMonth() + 1).toString().padStart(2, '0') +"-"+ date.getDate().toString().padStart(2, '0')
-            +" "+ date.getHours().toString().padStart(2, '0') +":"+ date.getMinutes().toString().padStart(2, '0') +":"+ date.getSeconds().toString().padStart(2, '0')
+    static ParseDateToFormatYYYY_MM_dd_HH_mm_ss(date: Date) {
+        return date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, '0') + "-" + date.getDate().toString().padStart(2, '0')
+            + " " + date.getHours().toString().padStart(2, '0') + ":" + date.getMinutes().toString().padStart(2, '0') + ":" + date.getSeconds().toString().padStart(2, '0')
     }
+
+
+    static ParseDateToFormatYYYY_MM_dd_HH_mm_ssWithoutDivision(date: Date){
+            return  date.getFullYear() +""+ (date.getMonth() + 1).toString().padStart(2, '0') +""+ date.getDate().toString().padStart(2, '0')
+                +""+ date.getHours().toString().padStart(2, '0') +""+ date.getMinutes().toString().padStart(2, '0') +""+ date.getSeconds().toString().padStart(2, '0')
+        }
 
     static ParseStringDateToFormatYYYY_MM_dd_HH_mm_ss(str: string){
         return ParseDate.ParseDateToFormatYYYY_MM_dd_HH_mm_ss(new Date(str))
